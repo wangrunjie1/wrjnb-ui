@@ -5,15 +5,17 @@ export default defineNuxtConfig({
   devServer: {
     port: 8887,
   },
-  modules: ["@element-plus/nuxt"],
-  elementPlus: {
-    /** Options */
+  app: {
+    head: {
+      link: [
+        {
+          rel: 'stylesheet',
+          href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
+        }
+      ]
+    }
   },
   css: [
-    "element-plus/dist/index.css",
-    "@/assets/global.css", // 预留全局样式
+    "@/assets/global.css", // 全局样式
   ],
-  build: {
-    transpile: ["element-plus"],
-  },
 });

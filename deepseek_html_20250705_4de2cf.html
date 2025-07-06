@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue3组件库 - 复制即用的前端组件解决方案</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
+    <style>
+        :root {
+            --primary: #3498db;
+            --primary-dark: #2980b9;
+            --secondary: #2c3e50;
+            --accent: #e74c3c;
+            --light: #f8f9fa;
+            --gray: #e0e0e0;
+            --dark-gray: #7f8c8d;
+            --border: #e0e0e0;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --radius: 8px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9fafb;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--secondary);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            color: var(--primary);
+            font-size: 28px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a.active {
+            color: var(--primary);
+            position: relative;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+            border-radius: 2px;
+        }
+
+        .hero {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            color: var(--dark-gray);
+        }
+
+        .tagline {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 30px;
+            width: 300px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            margin-left: 15px;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Components Section */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .components-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .component-card {
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .component-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .component-preview {
+            height: 180px;
+            background: linear-gradient(45deg, #f5f7fa, #e4edf5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .preview-content {
+            width: 100%;
+            max-width: 200px;
+        }
+
+        .preview-button {
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .component-info {
+            padding: 20px;
+        }
+
+        .component-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+
+        .component-info p {
+            color: var(--dark-gray);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        /* Component Detail */
+        .detail-container {
+            display: flex;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .component-detail {
+            flex: 1;
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 30px;
+        }
+
+        .detail-header {
+            margin-bottom: 30px;
+        }
+
+        .detail-header h1 {
+            font-size: 2.2rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        .detail-header p {
+            color: var(--dark-gray);
+            font-size: 1.1rem;
+        }
+
+        .demo-area {
+            background: #f8f9fa;
+            border-radius: var(--radius);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .demo-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+
+        .demo-content {
+            padding: 20px;
+            background: white;
+            border-radius: calc(var(--radius) - 4px);
+            box-shadow: inset 0 0 0 1px var(--border);
+        }
+
+        .code-section {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .code-header h3 {
+            font-size: 1.1rem;
+            color: var(--secondary);
+        }
+
+        .copy-btn {
+            background: #f1f8ff;
+            color: var(--primary);
+            border: 1px solid #d1e5ff;
+            border-radius: 4px;
+            padding: 5px 12px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: var(--transition);
+        }
+
+        .copy-btn:hover {
+            background: #e1f0ff;
+        }
+
+        pre {
+            margin: 0;
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        code {
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            font-size: 0.9rem;
+        }
+
+        .hljs {
+            padding: 20px !important;
+            background: #f8f9fa !important;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+        }
+
+        .props-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+        }
+
+        .props-table th {
+            background: #f5f7fa;
+            text-align: left;
+            padding: 12px 15px;
+            font-weight: 600;
+            color: var(--secondary);
+        }
+
+        .props-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        .prop-name {
+            font-family: monospace;
+            color: #d73a49;
+        }
+
+        .prop-type {
+            font-family: monospace;
+            color: #6f42c1;
+        }
+
+        .prop-default {
+            font-family: monospace;
+            color: #005cc5;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 260px;
+            position: sticky;
+            top: 100px;
+            align-self: flex-start;
+        }
+
+        .sidebar-card {
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-title {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .component-list {
+            list-style: none;
+        }
+
+        .component-list li {
+            margin-bottom: 10px;
+        }
+
+        .component-list a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            display: block;
+            padding: 8px 0;
+            transition: var(--transition);
+            border-left: 3px solid transparent;
+            padding-left: 10px;
+        }
+
+        .component-list a:hover {
+            color: var(--primary);
+        }
+
+        .component-list a.active {
+            color: var(--primary);
+            border-left: 3px solid var(--primary);
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col {
+            min-width: 200px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .detail-container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <i class="fas fa-cube logo-icon"></i>
+                    VueComponents
+                </a>
+                <div class="nav-links">
+                    <a href="#" class="active">首页</a>
+                    <a href="#">组件</a>
+                    <a href="#">文档</a>
+                    <a href="#">示例</a>
+                    <a href="#">关于</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <span class="tagline">复制即用 · 无依赖</span>
+            <h1>构建现代Web应用</h1>
+            <p>VueComponents 提供高质量的 Vue3 组件，可直接复制到您的项目中，无需额外依赖或复杂配置。</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn">立即使用</a>
+                <a href="#" class="btn btn-outline">查看组件</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="container">
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-copy"></i>
+                </div>
+                <h3>复制即用</h3>
+                <p>所有组件均可直接复制代码到您的项目中，无需安装依赖</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3>轻量高效</h3>
+                <p>零第三方依赖，组件经过极致优化，不影响应用性能</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <h3>高度可定制</h3>
+                <p>使用纯CSS变量设计，轻松定制组件样式以适应您的品牌</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Components Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>精选组件</h2>
+                <p>所有组件均可直接复制使用，无需安装任何依赖</p>
+            </div>
+            
+            <div class="components-grid">
+                <!-- Component Card 1 -->
+                <div class="component-card">
+                    <div class="component-preview">
+                        <div class="preview-content">
+                            <button class="preview-button">主要按钮</button>
+                        </div>
+                    </div>
+                    <div class="component-info">
+                        <h3>按钮 Button</h3>
+                        <p>多种样式和尺寸的按钮组件，支持所有交互状态</p>
+                        <a href="#" class="btn">查看详情</a>
+                    </div>
+                </div>
+                
+                <!-- Component Card 2 -->
+                <div class="component-card">
+                    <div class="component-preview">
+                        <div class="preview-content">
+                            <div style="display: flex; gap: 10px;">
+                                <div style="width: 24px; height: 24px; border-radius: 4px; background: var(--primary);"></div>
+                                <div style="width: 24px; height: 24px; border-radius: 4px; background: var(--accent);"></div>
+                                <div style="width: 24px; height: 24px; border-radius: 4px; background: var(--gray);"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="component-info">
+                        <h3>卡片 Card</h3>
+                        <p>内容容器组件，支持标题、内容和操作区域</p>
+                        <a href="#" class="btn">查看详情</a>
+                    </div>
+                </div>
+                
+                <!-- Component Card 3 -->
+                <div class="component-card">
+                    <div class="component-preview">
+                        <div class="preview-content">
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <div style="width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--primary);"></div>
+                                <span>选项一</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="component-info">
+                        <h3>单选框 Radio</h3>
+                        <p>单选选择组件，支持分组和多种布局</p>
+                        <a href="#" class="btn">查看详情</a>
+                    </div>
+                </div>
+                
+                <!-- Component Card 4 -->
+                <div class="component-card">
+                    <div class="component-preview">
+                        <div class="preview-content">
+                            <div style="position: relative; width: 100%; height: 4px; background: #e0e0e0; border-radius: 2px;">
+                                <div style="position: absolute; left: 0; top: 0; width: 60%; height: 100%; background: var(--primary); border-radius: 2px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="component-info">
+                        <h3>进度条 Progress</h3>
+                        <p>线性进度指示器，支持不同状态和动画</p>
+                        <a href="#" class="btn">查看详情</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Component Detail Section -->
+    <section class="section" style="background: #f5f7fa; padding-top: 40px;">
+        <div class="container">
+            <div class="detail-container">
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    <div class="sidebar-card">
+                        <h3 class="sidebar-title">组件列表</h3>
+                        <ul class="component-list">
+                            <li><a href="#" class="active">按钮 Button</a></li>
+                            <li><a href="#">输入框 Input</a></li>
+                            <li><a href="#">选择器 Select</a></li>
+                            <li><a href="#">开关 Switch</a></li>
+                            <li><a href="#">单选框 Radio</a></li>
+                            <li><a href="#">多选框 Checkbox</a></li>
+                            <li><a href="#">滑动条 Slider</a></li>
+                            <li><a href="#">日期选择器 Date Picker</a></li>
+                            <li><a href="#">表格 Table</a></li>
+                            <li><a href="#">分页 Pagination</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sidebar-card">
+                        <h3 class="sidebar-title">设计资源</h3>
+                        <ul class="component-list">
+                            <li><a href="#">设计原则</a></li>
+                            <li><a href="#">色彩系统</a></li>
+                            <li><a href="#">布局指南</a></li>
+                            <li><a href="#">图标库</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Component Detail -->
+                <div class="component-detail">
+                    <div class="detail-header">
+                        <h1>按钮 Button</h1>
+                        <p>按钮用于触发一个操作或事件，如提交表单、取消操作等。</p>
+                    </div>
+                    
+                    <div class="demo-area">
+                        <h3 class="demo-title">基础用法</h3>
+                        <div class="demo-content">
+                            <button class="preview-button" style="margin-right: 12px;">主要按钮</button>
+                            <button class="preview-button" style="background: white; color: var(--secondary); border: 1px solid var(--gray);">次要按钮</button>
+                            <button class="preview-button" style="background: var(--accent); margin-left: 12px;">危险操作</button>
+                        </div>
+                    </div>
+                    
+                    <div class="code-section">
+                        <div class="code-header">
+                            <h3>示例代码</h3>
+                            <button class="copy-btn" data-clipboard-target="#code-1">
+                                <i class="far fa-copy"></i> 复制代码
+                            </button>
+                        </div>
+                        <pre><code id="code-1" class="html">&lt;!-- 主要按钮 --&gt;
+&lt;button class=&quot;vc-button vc-button--primary&quot;&gt;主要按钮&lt;/button&gt;
+
+&lt;!-- 次要按钮 --&gt;
+&lt;button class=&quot;vc-button vc-button--secondary&quot;&gt;次要按钮&lt;/button&gt;
+
+&lt;!-- 危险按钮 --&gt;
+&lt;button class=&quot;vc-button vc-button--danger&quot;&gt;危险操作&lt;/button&gt;</code></pre>
+                    </div>
+                    
+                    <div class="code-section">
+                        <div class="code-header">
+                            <h3>Vue 组件代码</h3>
+                            <button class="copy-btn" data-clipboard-target="#code-2">
+                                <i class="far fa-copy"></i> 复制代码
+                            </button>
+                        </div>
+                        <pre><code id="code-2" class="javascript">// Button.vue
+&lt;template&gt;
+  &lt;button 
+    :class=&quot;[
+      'vc-button',
+      `vc-button--${type}`,
+      `vc-button--${size}`,
+      { 'vc-button--disabled': disabled }
+    ]&quot;
+    :disabled=&quot;disabled&quot;
+    @click=&quot;handleClick&quot;
+  &gt;
+    &lt;slot&gt;&lt;/slot&gt;
+  &lt;/button&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+defineProps({
+  type: {
+    type: String,
+    default: 'primary',
+    validator: (value) =&gt; {
+      return ['primary', 'secondary', 'danger', 'text'].includes(value)
+    }
+  },
+  size: {
+    type: String,
+    default: 'medium',
+    validator: (value) =&gt; {
+      return ['small', 'medium', 'large'].includes(value)
+    }
+  },
+  disabled: Boolean
+})
+
+const emit = defineEmits(['click'])
+
+function handleClick(event) {
+  emit('click', event)
+}
+&lt;/script&gt;</code></pre>
+                    </div>
+                    
+                    <h3 style="margin: 40px 0 20px;">属性说明</h3>
+                    <table class="props-table">
+                        <thead>
+                            <tr>
+                                <th>属性名</th>
+                                <th>说明</th>
+                                <th>类型</th>
+                                <th>默认值</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="prop-name">type</span></td>
+                                <td>按钮类型</td>
+                                <td><span class="prop-type">'primary' | 'secondary' | 'danger' | 'text'</span></td>
+                                <td><span class="prop-default">'primary'</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="prop-name">size</span></td>
+                                <td>按钮尺寸</td>
+                                <td><span class="prop-type">'small' | 'medium' | 'large'</span></td>
+                                <td><span class="prop-default">'medium'</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="prop-name">disabled</span></td>
+                                <td>是否禁用状态</td>
+                                <td><span class="prop-type">Boolean</span></td>
+                                <td><span class="prop-default">false</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <h3 style="margin: 40px 0 20px;">事件说明</h3>
+                    <table class="props-table">
+                        <thead>
+                            <tr>
+                                <th>事件名</th>
+                                <th>说明</th>
+                                <th>回调参数</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="prop-name">click</span></td>
+                                <td>点击按钮时触发</td>
+                                <td>event: MouseEvent</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>VueComponents</h3>
+                    <p style="color: #bdc3c7; max-width: 280px; margin-bottom: 20px;">提供高质量的Vue3组件，可直接复制到您的项目中，无需额外依赖。</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>资源</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">文档</a></li>
+                        <li><a href="#">组件</a></li>
+                        <li><a href="#">示例</a></li>
+                        <li><a href="#">设计资源</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>社区</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">GitHub</a></li>
+                        <li><a href="#">问题反馈</a></li>
+                        <li><a href="#">贡献指南</a></li>
+                        <li><a href="#">博客</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>帮助</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">常见问题</a></li>
+                        <li><a href="#">更新日志</a></li>
+                        <li><a href="#">联系我们</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2023 VueComponents. 开源协议 MIT License.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 初始化代码高亮
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.querySelectorAll('pre code').forEach((el) => {
+                hljs.highlightElement(el);
+            });
+            
+            // 初始化复制功能
+            new ClipboardJS('.copy-btn');
+            
+            // 添加复制成功提示
+            const clipboard = new ClipboardJS('.copy-btn');
+            clipboard.on('success', function(e) {
+                const originalText = e.trigger.innerHTML;
+                e.trigger.innerHTML = '<i class="fas fa-check"></i> 已复制';
+                setTimeout(() => {
+                    e.trigger.innerHTML = originalText;
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>

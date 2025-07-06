@@ -14,7 +14,7 @@ const props = defineProps({
 })
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .wrjnb-card {
   border-radius: 8px;
   background: #fff;

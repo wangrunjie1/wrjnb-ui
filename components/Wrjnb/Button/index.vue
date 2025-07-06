@@ -21,7 +21,7 @@ const props = defineProps({
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @use "sass:color";
 
 $primary: #409eff;

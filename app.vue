@@ -1,151 +1,261 @@
 <template>
-  <el-config-provider :locale="zhCn" :size="size" :z-index="3000" :namespace="'el'" :button="{ autoInsertSpace: true }">
-    <div class="wrjnb-app">
-      <header class="wrjnb-header glass">
-        <div class="logo">
-          <span class="logo-icon">🧩</span>
-          <span class="logo-text">wrjnb</span>
-        </div>
-        <nav>
-          <NuxtLink to="/" exact-active-class="active">首页</NuxtLink>
-          <NuxtLink to="/component" exact-active-class="active">组件</NuxtLink>
+  <div id="app">
+    <!-- Header -->
+    <header>
+      <div class="container">
+        <nav class="navbar">
+          <NuxtLink to="/" class="logo">
+            <i class="fas fa-cube logo-icon"></i>
+            VueComponents
+          </NuxtLink>
+          <div class="nav-links">
+            <NuxtLink to="/" class="nav-link" :class="{ active: $route.path === '/' }">首页</NuxtLink>
+            <NuxtLink to="/component" class="nav-link" :class="{ active: $route.path === '/component' }">组件</NuxtLink>
+            <NuxtLink to="/docs" class="nav-link" :class="{ active: $route.path === '/docs' }">文档</NuxtLink>
+            <NuxtLink to="/examples" class="nav-link" :class="{ active: $route.path === '/examples' }">示例</NuxtLink>
+            <NuxtLink to="/about" class="nav-link" :class="{ active: $route.path === '/about' }">关于</NuxtLink>
+          </div>
         </nav>
-      </header>
-      <main>
-        <NuxtPage />
-      </main>
-      <footer class="wrjnb-footer glass">
-        <span>© 2024 wrjnb 组件库</span>
-        <span class="footer-links">
-          <a href="https://github.com/" target="_blank">GitHub</a>
-          <span>|</span>
-          <a href="mailto:hi@wrjnb.com">联系作者</a>
-        </span>
-      </footer>
-    </div>
-  </el-config-provider>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <NuxtPage />
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-col">
+            <h3>VueComponents</h3>
+            <p>提供高质量的Vue3组件，可直接复制到您的项目中，无需额外依赖。</p>
+          </div>
+          
+          <div class="footer-col">
+            <h3>资源</h3>
+            <ul class="footer-links">
+              <li><NuxtLink to="/docs">文档</NuxtLink></li>
+              <li><NuxtLink to="/component">组件</NuxtLink></li>
+              <li><NuxtLink to="/examples">示例</NuxtLink></li>
+              <li><NuxtLink to="/design">设计资源</NuxtLink></li>
+            </ul>
+          </div>
+          
+          <div class="footer-col">
+            <h3>社区</h3>
+            <ul class="footer-links">
+              <li><a href="#" target="_blank">GitHub</a></li>
+              <li><a href="#" target="_blank">问题反馈</a></li>
+              <li><a href="#" target="_blank">贡献指南</a></li>
+              <li><a href="#" target="_blank">博客</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-col">
+            <h3>帮助</h3>
+            <ul class="footer-links">
+              <li><NuxtLink to="/faq">常见问题</NuxtLink></li>
+              <li><NuxtLink to="/changelog">更新日志</NuxtLink></li>
+              <li><NuxtLink to="/contact">联系我们</NuxtLink></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="copyright">
+          <p>© 2024 VueComponents. 开源协议 MIT License.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
 </template>
 
-<script setup lang="ts">
-// @ts-expect-error: element-plus locale 没有类型声明
-import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
-import { ref } from 'vue'
-const size = ref('default')
+<script setup>
+// 页面标题
+useHead({
+  title: 'VueComponents - 复制即用的前端组件解决方案',
+  meta: [
+    { name: 'description', content: 'VueComponents 提供高质量的 Vue3 组件，可直接复制到您的项目中，无需额外依赖或复杂配置。' }
+  ]
+})
 </script>
 
-<style scoped>
-.wrjnb-app {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background: linear-gradient(135deg, #e0e7ff 0%, #f5f7fa 100%);
-  transition: background 0.3s;
+<style>
+@import '~/assets/global.css';
+
+:root {
+  --primary: #3498db;
+  --primary-dark: #2980b9;
+  --secondary: #2c3e50;
+  --accent: #e74c3c;
+  --light: #f8f9fa;
+  --gray: #e0e0e0;
+  --dark-gray: #7f8c8d;
+  --border: #e0e0e0;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --radius: 8px;
+  --transition: all 0.3s ease;
 }
-.wrjnb-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 2rem;
-  height: 68px;
-  border-bottom: 1px solid #e0e7ff77;
-  box-shadow: 0 2px 24px #7f5fff22;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f9fafb;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header */
+header {
+  background-color: white;
+  box-shadow: var(--shadow);
   position: sticky;
   top: 0;
-  z-index: 10;
-  backdrop-filter: blur(16px) saturate(1.2);
+  z-index: 100;
 }
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+}
+
 .logo {
   display: flex;
   align-items: center;
-  font-size: 1.7rem;
-  font-weight: bold;
-  letter-spacing: 2px;
-  color: #7f5fff;
-  user-select: none;
-  text-shadow: 0 2px 12px #7f5fff33;
+  gap: 12px;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--secondary);
+  text-decoration: none;
 }
+
 .logo-icon {
-  font-size: 1.8rem;
-  margin-right: 0.3em;
-  filter: drop-shadow(0 2px 6px #7f5fff33);
+  color: var(--primary);
+  font-size: 28px;
 }
-.logo-text {
-  font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;
-}
-nav {
+
+.nav-links {
   display: flex;
-  gap: 1.5rem;
+  gap: 30px;
 }
-nav a {
-  color: #333;
+
+.nav-link {
   text-decoration: none;
+  color: var(--secondary);
   font-weight: 500;
-  padding: 0.2em 0.9em;
-  border-radius: 8px;
-  transition: background 0.2s, color 0.2s;
-  font-size: 1.08rem;
-  backdrop-filter: blur(4px);
+  transition: var(--transition);
+  position: relative;
 }
-nav a.active, nav a.router-link-active {
-  background: linear-gradient(90deg, #7f5fff22 0%, #5aefff22 100%);
-  color: #7f5fff;
+
+.nav-link:hover {
+  color: var(--primary);
 }
-nav a:hover {
-  background: linear-gradient(90deg, #7f5fff33 0%, #5aefff33 100%);
-  color: #7f5fff;
+
+.nav-link.active {
+  color: var(--primary);
 }
-main {
-  flex: 1;
-  padding: 2.5rem 1rem 1.5rem 1rem;
-  max-width: 1200px;
-  margin: 0 auto;
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
   width: 100%;
-  background: none;
+  height: 3px;
+  background-color: var(--primary);
+  border-radius: 2px;
 }
-.wrjnb-footer {
-  text-align: center;
-  padding: 1.2rem 0 0.7rem 0;
-  color: #7f5fff;
-  font-size: 1rem;
-  background: rgba(255,255,255,0.7);
-  border-top: 1px solid #e0e7ff77;
-  margin-top: 2rem;
+
+/* Main Content */
+main {
+  min-height: calc(100vh - 200px);
+}
+
+/* Footer */
+footer {
+  background: var(--secondary);
+  color: white;
+  padding: 60px 0 30px;
+  margin-top: 80px;
+}
+
+.footer-content {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.3em;
-  backdrop-filter: blur(12px) saturate(1.2);
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-bottom: 40px;
 }
+
+.footer-col {
+  min-width: 200px;
+}
+
+.footer-col h3 {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.footer-col p {
+  color: #bdc3c7;
+  max-width: 280px;
+  margin-bottom: 20px;
+}
+
 .footer-links {
-  margin-top: 0.2em;
-  font-size: 0.98em;
-  color: #7f5fff;
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
+  list-style: none;
 }
+
+.footer-links li {
+  margin-bottom: 12px;
+}
+
 .footer-links a {
-  color: #7f5fff;
+  color: #bdc3c7;
   text-decoration: none;
-  transition: color 0.2s;
+  transition: var(--transition);
 }
+
 .footer-links a:hover {
-  color: #5aefff;
+  color: white;
 }
-.glass {
-  background: rgba(255,255,255,0.7) !important;
-  box-shadow: 0 8px 32px #7f5fff22 !important;
-  backdrop-filter: blur(16px) saturate(1.2) !important;
+
+.copyright {
+  text-align: center;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #bdc3c7;
+  font-size: 0.9rem;
 }
-@media (max-width: 900px) {
-  .wrjnb-header {
-    flex-direction: column;
-    height: auto;
-    padding: 1rem 0.5rem;
-    gap: 0.5rem;
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-links {
+    gap: 20px;
   }
-  main {
-    padding: 1rem 0.2rem;
+  
+  .footer-content {
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .footer-col {
+    min-width: auto;
   }
 }
 </style>

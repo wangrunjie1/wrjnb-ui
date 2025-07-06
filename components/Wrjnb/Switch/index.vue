@@ -12,7 +12,7 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue'])
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .wrjnb-switch {
   width: 44px;
   height: 24px;

@@ -3,7 +3,7 @@
     class="wrjnb-input"
     :placeholder="placeholder"
     :value="modelValue"
-    @input="$emit('update:modelValue', $event.target.value)"
+    @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
   />
 </template>
 
@@ -16,7 +16,7 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue'])
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .wrjnb-input {
   border: 1px solid #dcdfe6;
   border-radius: 4px;

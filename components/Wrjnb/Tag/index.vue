@@ -11,7 +11,7 @@ const props = defineProps({
 })
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 $primary: #409eff;
 $success: #67c23a;
 $danger: #f56c6c;
