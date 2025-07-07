@@ -1,13 +1,9 @@
-import type { ComponentUsage } from '~/components/Wrjnb/Button/usage'
-
-// 动态导入所有组件的配置
+// 只保留 Button、Card、Input、Switch 四个组件
 const componentConfigs = {
   Button: () => import('~/components/Wrjnb/Button/usage').then(m => m.buttonUsage),
   Card: () => import('~/components/Wrjnb/Card/usage').then(m => m.cardUsage),
   Input: () => import('~/components/Wrjnb/Input/usage').then(m => m.inputUsage),
   Switch: () => import('~/components/Wrjnb/Switch/usage').then(m => m.switchUsage),
-  Tag: () => import('~/components/Wrjnb/Tag/usage').then(m => m.tagUsage),
-  Alert: () => import('~/components/Wrjnb/Alert/usage').then(m => m.alertUsage),
 }
 
 // 获取所有组件列表

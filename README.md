@@ -1,6 +1,6 @@
-# VueComponents - 复制即用的前端组件解决方案
+# Wrjnb UI - 复制即用的前端组件库
 
-VueComponents 提供高质量的 Vue3 组件，可直接复制到您的项目中，无需额外依赖或复杂配置。
+Wrjnb UI 提供高质量的 Vue3 组件，可直接复制到您的项目中，无需额外依赖或复杂配置。
 
 ## 特性
 
@@ -16,7 +16,7 @@ VueComponents 提供高质量的 Vue3 组件，可直接复制到您的项目中
 
 ```bash
 git clone <your-repo-url>
-cd vue-components
+cd wrjnb-ui
 ```
 
 ### 2. 安装依赖
@@ -78,4 +78,4 @@ MIT License - 可自由使用于商业项目。
 
 ---
 
-**VueComponents** - 让前端开发更简单、更高效。
+**Wrjnb UI** - 让前端开发更简单、更高效。

@@ -6,14 +6,39 @@
         <nav class="navbar">
           <NuxtLink to="/" class="logo">
             <i class="fas fa-cube logo-icon"></i>
-            VueComponents
+            Wrjnb UI
           </NuxtLink>
           <div class="nav-links">
-            <NuxtLink to="/" class="nav-link" :class="{ active: $route.path === '/' }">首页</NuxtLink>
-            <NuxtLink to="/component" class="nav-link" :class="{ active: $route.path === '/component' }">组件</NuxtLink>
-            <NuxtLink to="/docs" class="nav-link" :class="{ active: $route.path === '/docs' }">文档</NuxtLink>
-            <NuxtLink to="/examples" class="nav-link" :class="{ active: $route.path === '/examples' }">示例</NuxtLink>
-            <NuxtLink to="/about" class="nav-link" :class="{ active: $route.path === '/about' }">关于</NuxtLink>
+            <NuxtLink
+              to="/"
+              class="nav-link"
+              :class="{ active: $route.path === '/' }"
+              >首页</NuxtLink
+            >
+            <NuxtLink
+              to="/component"
+              class="nav-link"
+              :class="{ active: $route.path === '/component' }"
+              >组件</NuxtLink
+            >
+            <NuxtLink
+              to="/docs"
+              class="nav-link"
+              :class="{ active: $route.path === '/docs' }"
+              >文档</NuxtLink
+            >
+            <NuxtLink
+              to="/examples"
+              class="nav-link"
+              :class="{ active: $route.path === '/examples' }"
+              >示例</NuxtLink
+            >
+            <NuxtLink
+              to="/about"
+              class="nav-link"
+              :class="{ active: $route.path === '/about' }"
+              >关于</NuxtLink
+            >
           </div>
         </nav>
       </div>
@@ -29,10 +54,13 @@
       <div class="container">
         <div class="footer-content">
           <div class="footer-col">
-            <h3>VueComponents</h3>
-            <p>提供高质量的Vue3组件，可直接复制到您的项目中，无需额外依赖。</p>
+            <h3>Wrjnb UI</h3>
+            <p>
+              提供高质量的Vue3组件，可直接复制到您的项目中，无需额外依赖。——Wrjnb
+              UI
+            </p>
           </div>
-          
+
           <div class="footer-col">
             <h3>资源</h3>
             <ul class="footer-links">
@@ -42,17 +70,23 @@
               <li><NuxtLink to="/design">设计资源</NuxtLink></li>
             </ul>
           </div>
-          
+
           <div class="footer-col">
             <h3>社区</h3>
             <ul class="footer-links">
-              <li><a href="#" target="_blank">GitHub</a></li>
+              <li>
+                <a
+                  href="https://github.com/wangrunjie1/wrjnb-ui"
+                  target="_blank"
+                  >GitHub</a
+                >
+              </li>
               <li><a href="#" target="_blank">问题反馈</a></li>
               <li><a href="#" target="_blank">贡献指南</a></li>
               <li><a href="#" target="_blank">博客</a></li>
             </ul>
           </div>
-          
+
           <div class="footer-col">
             <h3>帮助</h3>
             <ul class="footer-links">
@@ -62,9 +96,9 @@
             </ul>
           </div>
         </div>
-        
+
         <div class="copyright">
-          <p>© 2024 VueComponents. 开源协议 MIT License.</p>
+          <p>© 2025 Wrjnb UI. 开源协议 MIT License.</p>
         </div>
       </div>
     </footer>
@@ -74,15 +108,19 @@
 <script setup>
 // 页面标题
 useHead({
-  title: 'VueComponents - 复制即用的前端组件解决方案',
+  title: "Wrjnb UI - 复制即用的前端组件库",
   meta: [
-    { name: 'description', content: 'VueComponents 提供高质量的 Vue3 组件，可直接复制到您的项目中，无需额外依赖或复杂配置。' }
-  ]
-})
+    {
+      name: "description",
+      content:
+        "Wrjnb UI 提供高质量的 Vue3 组件，可直接复制到您的项目中，无需额外依赖或复杂配置。",
+    },
+  ],
+});
 </script>
 
 <style>
-@import '~/assets/global.css';
+@import "~/assets/global.css";
 
 :root {
   --primary: #3498db;
@@ -105,7 +143,7 @@ useHead({
 }
 
 body {
-  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
   line-height: 1.6;
   color: #333;
   background-color: #f9fafb;
@@ -170,7 +208,7 @@ header {
 }
 
 .nav-link.active::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -6px;
   left: 0;
@@ -248,12 +286,12 @@ footer {
   .nav-links {
     gap: 20px;
   }
-  
+
   .footer-content {
     flex-direction: column;
     gap: 30px;
   }
-  
+
   .footer-col {
     min-width: auto;
   }

@@ -61,47 +61,34 @@
             <div
               v-for="(example, index) in currentComponent.examples"
               :key="index"
-              class="demo-area"
             >
-              <h3 class="demo-title">{{ example.title }}</h3>
-              <p class="demo-description">{{ example.description }}</p>
-              <div class="demo-content">
-                <component
-                  v-if="currentComponentInstance"
-                  :is="currentComponentInstance"
-                  v-bind="getExampleProps(example)"
-                />
-              </div>
+              <DemoBlock
+                :title="example.title"
+                :description="example.description"
+                :code="example.demoCode"
+              >
+                <component :is="example.demo" />
+              </DemoBlock>
             </div>
 
-            <div
-              v-for="(example, index) in currentComponent.examples"
-              :key="`code-${index}`"
-              class="code-section"
-            >
+            <div class="code-section">
               <div class="code-header">
-                <h3>{{ example.title }} - 示例代码</h3>
-                <button class="copy-btn" @click="copyCode(`code-${index}`)">
-                  <i class="far fa-copy"></i> 复制代码
+                <h3>组件代码</h3>
+                <button
+                  class="copy-btn"
+                  data-clipboard-target="#code-2"
+                  @click="copyComponentCode"
+                >
+                  <template v-if="copiedComponentCode">
+                    <i class="fas fa-check"></i> 已复制
+                  </template>
+                  <template v-else>
+                    <i class="far fa-copy"></i> 复制代码
+                  </template>
                 </button>
               </div>
-              <pre><code :id="`code-${index}`" class="html">{{ example.code }}</code></pre>
+              <pre><code id="code-2" class="javascript">{{ currentComponent.code }}</code></pre>
             </div>
-
-            <div
-              v-for="(example, index) in currentComponent.examples"
-              :key="`vue-${index}`"
-              class="code-section"
-            >
-              <div class="code-header">
-                <h3>{{ example.title }} - Vue 组件代码</h3>
-                <button class="copy-btn" @click="copyCode(`vue-${index}`)">
-                  <i class="far fa-copy"></i> 复制代码
-                </button>
-              </div>
-              <pre><code :id="`vue-${index}`" class="javascript">{{ example.vueCode }}</code></pre>
-            </div>
-
             <h3 style="margin: 40px 0 20px">属性说明</h3>
             <table class="props-table">
               <thead>
@@ -186,55 +173,56 @@
 
 <script setup>
 import { getAllComponents, getComponentByName } from "~/utils/components";
-import { getComponent, parseExampleProps } from "~/utils/componentRenderer";
+import { getComponent } from "~/utils/componentRenderer";
+import DemoBlock from "~/components/DemoBlock.vue";
 
 // 获取路由参数
 const route = useRoute();
 const componentName = route.params.name;
-
-// 页面标题
-useHead({
-  title: computed(() => {
-    if (currentComponent.value) {
-      return `${currentComponent.value.title} - VueComponents`;
-    }
-    return "组件详情 - VueComponents";
-  }),
-  meta: [
-    {
-      name: "description",
-      content: computed(() => {
-        if (currentComponent.value) {
-          return `${currentComponent.value.description} - VueComponents 组件详情页面`;
-        }
-        return "VueComponents 组件详情页面，包含组件演示、代码示例和属性说明。";
-      }),
-    },
-  ],
-});
 
 // 获取组件列表和当前组件
 const components = ref([]);
 const currentComponent = ref(null);
 const currentComponentInstance = ref(null);
 
-onMounted(async () => {
-  try {
-    // 获取所有组件
-    components.value = await getAllComponents();
-
-    // 如果有组件名参数，获取当前组件
-    if (componentName) {
-      const name =
-        String(componentName).charAt(0).toUpperCase() +
-        String(componentName).slice(1);
-      currentComponent.value = await getComponentByName(name);
-      currentComponentInstance.value = getComponent(name);
+// 页面标题
+useHead({
+  title: computed(() => {
+    if (currentComponent.value) {
+      return `${currentComponent.value.title} - Wrjnb UI`;
     }
-  } catch (error) {
-    console.error("Failed to load components:", error);
-  }
+    return "组件详情 - Wrjnb UI";
+  }),
+  meta: [
+    {
+      name: "description",
+      content: computed(() => {
+        if (currentComponent.value) {
+          return `${currentComponent.value.description} - Wrjnb UI 组件详情页面`;
+        }
+        return "Wrjnb UI 组件详情页面，包含组件演示、代码示例和属性说明。";
+      }),
+    },
+  ],
 });
+
+// onMounted(async () => {
+try {
+  // 获取所有组件
+  components.value = await getAllComponents();
+
+  // 如果有组件名参数，获取当前组件
+  if (componentName) {
+    const name =
+      String(componentName).charAt(0).toUpperCase() +
+      String(componentName).slice(1);
+    currentComponent.value = await getComponentByName(name);
+    currentComponentInstance.value = getComponent(name);
+  }
+} catch (error) {
+  console.error("Failed to load components:", error);
+}
+// });
 
 // 监听路由变化
 watch(
@@ -249,24 +237,13 @@ watch(
   }
 );
 
-// 获取示例属性
-const getExampleProps = (example) => {
-  return parseExampleProps(example);
-};
-
 // 复制代码功能
-const copyCode = (elementId) => {
-  const element = document.getElementById(elementId);
-  if (element) {
-    const text = element.textContent;
-    navigator.clipboard.writeText(text).then(() => {
-      // 显示复制成功提示
-      const button = event.target.closest(".copy-btn");
-      const originalText = button.innerHTML;
-      button.innerHTML = '<i class="fas fa-check"></i> 已复制';
-      setTimeout(() => {
-        button.innerHTML = originalText;
-      }, 2000);
+const copiedComponentCode = ref(false);
+const copyComponentCode = () => {
+  if (currentComponent.value && currentComponent.value.code) {
+    navigator.clipboard.writeText(currentComponent.value.code).then(() => {
+      copiedComponentCode.value = true;
+      setTimeout(() => (copiedComponentCode.value = false), 1500);
     });
   }
 };

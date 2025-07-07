@@ -1,5 +1,5 @@
 {
-  "name": "vue-components",
+  "name": "wrjnb-ui",
   "private": true,
   "type": "module",
   "scripts": {
@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "nuxt": "^3.17.6",
+    "prismjs": "^1.30.0",
     "vue": "^3.5.17",
     "vue-router": "^4.5.1"
   }

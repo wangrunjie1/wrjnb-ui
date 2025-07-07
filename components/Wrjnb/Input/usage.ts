@@ -1,95 +1,49 @@
-import type { ComponentUsage } from '../Button/usage';
+import Demo from "./demo.vue";
+import demoCode from "./demo.vue?raw";
+import Code from "./index.vue?raw";
 
 export const inputUsage: ComponentUsage = {
-  name: 'Input',
-  title: '输入框 Input',
-  description: '输入框用于文本输入，支持禁用、占位符等。',
-  category: '表单组件',
+  name: "Input",
+  title: "输入框 Input",
+  description: "用于接收用户输入的表单组件。",
+  category: "表单组件",
+  code: Code,
+  examples: [
+    {
+      title: "输入框演示",
+      description: "输入框的全部用法演示。",
+      demo: Demo,
+      demoCode,
+    },
+  ],
   props: [
     {
-      name: 'modelValue',
-      description: '绑定值',
-      type: 'String | Number',
+      name: "modelValue",
+      description: "输入框的值",
+      type: "String | Number",
       default: "''",
-      required: false
+      required: false,
     },
     {
-      name: 'placeholder',
-      description: '输入框占位文本',
-      type: 'String',
+      name: "placeholder",
+      description: "占位符",
+      type: "String",
       default: "''",
-      required: false
+      required: false,
     },
     {
-      name: 'disabled',
-      description: '是否禁用',
-      type: 'Boolean',
-      default: 'false',
-      required: false
+      name: "disabled",
+      description: "是否禁用",
+      type: "Boolean",
+      default: "false",
+      required: false,
     },
-    {
-      name: 'type',
-      description: '输入框类型',
-      type: "'text' | 'password' | 'number'",
-      default: "'text'",
-      required: false
-    }
   ],
   events: [
     {
-      name: 'update:modelValue',
-      description: '值更新时触发',
-      params: 'value: String | Number'
+      name: "update:modelValue",
+      description: "输入值变化时触发",
+      params: "value: string | number",
     },
-    {
-      name: 'input',
-      description: '输入时触发',
-      params: 'event: Event'
-    },
-    {
-      name: 'change',
-      description: '值改变时触发',
-      params: 'event: Event'
-    }
   ],
-  examples: [
-    {
-      title: '基础用法',
-      description: '输入框的基础用法。',
-      code: `<wrjnb-input v-model="value" placeholder="请输入内容" />`,
-      vueCode: `<template>
-  <wrjnb-input v-model="value" placeholder="请输入内容" />
-</template>
-
-<script setup>
-import { ref } from 'vue'
-
-const value = ref('')
-</script>`
-    },
-    {
-      title: '禁用状态',
-      description: '通过 disabled 属性禁用输入框。',
-      code: `<wrjnb-input disabled placeholder="禁用状态" />`,
-      vueCode: `<template>
-  <wrjnb-input disabled placeholder="禁用状态" />
-</template>
-
-<script setup>
-// 无需额外配置
-</script>`
-    },
-    {
-      title: '密码输入',
-      description: '使用 type="password" 创建密码输入框。',
-      code: `<wrjnb-input type="password" placeholder="请输入密码" />`,
-      vueCode: `<template>
-  <wrjnb-input type="password" placeholder="请输入密码" />
-</template>
-
-<script setup>
-// 无需额外配置
-</script>`
-    }
-  ]
-}; 
+};

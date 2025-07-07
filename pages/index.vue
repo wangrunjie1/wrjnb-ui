@@ -5,7 +5,10 @@
       <div class="container">
         <span class="tagline">复制即用 · 无依赖</span>
         <h1>构建现代Web应用</h1>
-        <p>VueComponents 提供高质量的 Vue3 组件，可直接复制到您的项目中，无需额外依赖或复杂配置。</p>
+        <p>
+          Wrjnb UI 提供高质量的 Vue3
+          组件，可直接复制到您的项目中，无需额外依赖或复杂配置。
+        </p>
         <div class="cta-buttons">
           <NuxtLink to="/component" class="btn">立即使用</NuxtLink>
           <NuxtLink to="/component" class="btn btn-outline">查看组件</NuxtLink>
@@ -39,80 +42,55 @@
         </div>
       </div>
     </section>
-
-    <!-- Components Section -->
-    <section class="section">
-      <div class="container">
-        <div class="section-title">
-          <h2>精选组件</h2>
-          <p>所有组件均可直接复制使用，无需安装任何依赖</p>
-        </div>
-        
-        <div class="components-grid">
-          <div 
-            v-for="component in components" 
-            :key="component.name"
-            class="component-card"
-          >
-            <div class="component-preview">
-              <div class="preview-content">
-                <component v-if="componentInstances[component.name]" :is="componentInstances[component.name]" v-bind="getPreviewProps(component.name)" />
-              </div>
-            </div>
-            <div class="component-info">
-              <h3>{{ component.title }}</h3>
-              <p>{{ component.description }}</p>
-              <NuxtLink :to="`/component/${component.name.toLowerCase()}`" class="btn">查看详情</NuxtLink>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
   </div>
 </template>
 
 <script setup>
-import { getAllComponents } from '~/utils/components'
-import { getComponent } from '~/utils/componentRenderer'
+import { getAllComponents } from "~/utils/components";
+import { getComponent } from "~/utils/componentRenderer";
 
 // 页面标题
 useHead({
-  title: 'VueComponents - 复制即用的前端组件解决方案',
+  title: "Wrjnb UI - 复制即用的前端组件库",
   meta: [
-    { name: 'description', content: 'VueComponents 提供高质量的 Vue3 组件，可直接复制到您的项目中，无需额外依赖或复杂配置。' }
-  ]
-})
+    {
+      name: "description",
+      content:
+        "Wrjnb UI 提供高质量的 Vue3 组件，可直接复制到您的项目中，无需额外依赖或复杂配置。",
+    },
+  ],
+});
 
 // 获取组件列表
-const components = ref([])
-const componentInstances = ref({})
+const components = ref([]);
+const componentInstances = ref({});
 
 onMounted(async () => {
   try {
-    components.value = await getAllComponents()
-    
+    components.value = await getAllComponents();
+
     // 预加载所有组件实例
-    components.value.forEach(component => {
-      componentInstances.value[component.name] = getComponent(component.name)
-    })
+    components.value.forEach((component) => {
+      componentInstances.value[component.name] = getComponent(component.name);
+    });
   } catch (error) {
-    console.error('Failed to load components:', error)
+    console.error("Failed to load components:", error);
   }
-})
+});
 
 // 获取组件预览属性
 const getPreviewProps = (componentName) => {
   const propsMap = {
-    Button: { type: 'primary', children: '主要按钮' },
-    Card: { title: '卡片标题', children: '卡片内容' },
-    Input: { placeholder: '请输入内容' },
+    Button: { type: "primary", children: "主要按钮" },
+    Card: { title: "卡片标题", children: "卡片内容" },
+    Input: { placeholder: "请输入内容" },
     Switch: { modelValue: true },
-    Tag: { type: 'primary', children: '标签' },
-    Alert: { type: 'primary', children: '这是一条警告信息' }
-  }
-  
-  return propsMap[componentName] || {}
-}
+    Tag: { type: "primary", children: "标签" },
+    Alert: { type: "primary", children: "这是一条警告信息" },
+  };
+
+  return propsMap[componentName] || {};
+};
 </script>
 
 <style scoped>
@@ -291,16 +269,16 @@ const getPreviewProps = (componentName) => {
   .hero h1 {
     font-size: 2.5rem;
   }
-  
+
   .hero p {
     font-size: 1.1rem;
   }
-  
+
   .features {
     flex-direction: column;
     align-items: center;
   }
-  
+
   .feature-card {
     width: 100%;
     max-width: 350px;
