@@ -173,7 +173,6 @@
 
 <script setup>
 import { getAllComponents, getComponentByName } from "~/utils/components";
-import { getComponent } from "~/utils/componentRenderer";
 import DemoBlock from "~/components/DemoBlock.vue";
 
 // 获取路由参数
@@ -183,7 +182,6 @@ const componentName = route.params.name;
 // 获取组件列表和当前组件
 const components = ref([]);
 const currentComponent = ref(null);
-const currentComponentInstance = ref(null);
 
 // 页面标题
 useHead({
@@ -217,7 +215,6 @@ try {
       String(componentName).charAt(0).toUpperCase() +
       String(componentName).slice(1);
     currentComponent.value = await getComponentByName(name);
-    currentComponentInstance.value = getComponent(name);
   }
 } catch (error) {
   console.error("Failed to load components:", error);
@@ -232,7 +229,6 @@ watch(
       const name =
         String(newName).charAt(0).toUpperCase() + String(newName).slice(1);
       currentComponent.value = await getComponentByName(name);
-      currentComponentInstance.value = getComponent(name);
     }
   }
 );

@@ -70,7 +70,7 @@ const copyCode = () => {
 }
 .demo-block__meta {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 16px;
   padding: 12px 24px;
   background: #f8f9fa;
@@ -78,6 +78,7 @@ const copyCode = () => {
 .demo-block__title {
   font-weight: bold;
   color: #333;
+  white-space: nowrap;
 }
 .demo-block__desc {
   color: #888;
@@ -85,15 +86,15 @@ const copyCode = () => {
 }
 .demo-block__toggle,
 .demo-block__copy {
-  margin-left: 16px;
   background: #f1f8ff;
   color: #409eff;
   border: 1px solid #d1e5ff;
   border-radius: 4px;
-  padding: 4px 10px;
+  padding: 4px 8px;
   font-size: 0.9em;
   cursor: pointer;
   transition: background 0.2s;
+  white-space: nowrap;
 }
 
 .demo-block__toggle {

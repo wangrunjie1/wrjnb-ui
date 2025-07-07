@@ -46,9 +46,6 @@
 </template>
 
 <script setup>
-import { getAllComponents } from "~/utils/components";
-import { getComponent } from "~/utils/componentRenderer";
-
 // 页面标题
 useHead({
   title: "Wrjnb UI - 复制即用的前端组件库",
@@ -62,21 +59,6 @@ useHead({
 });
 
 // 获取组件列表
-const components = ref([]);
-const componentInstances = ref({});
-
-onMounted(async () => {
-  try {
-    components.value = await getAllComponents();
-
-    // 预加载所有组件实例
-    components.value.forEach((component) => {
-      componentInstances.value[component.name] = getComponent(component.name);
-    });
-  } catch (error) {
-    console.error("Failed to load components:", error);
-  }
-});
 
 // 获取组件预览属性
 const getPreviewProps = (componentName) => {
@@ -213,55 +195,6 @@ const getPreviewProps = (componentName) => {
   color: var(--dark-gray);
   max-width: 700px;
   margin: 0 auto;
-}
-
-.components-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 30px;
-}
-
-.component-card {
-  background: white;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  overflow: hidden;
-  transition: var(--transition);
-}
-
-.component-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-}
-
-.component-preview {
-  height: 180px;
-  background: linear-gradient(45deg, #f5f7fa, #e4edf5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-
-.preview-content {
-  width: 100%;
-  max-width: 200px;
-}
-
-.component-info {
-  padding: 20px;
-}
-
-.component-info h3 {
-  font-size: 1.3rem;
-  margin-bottom: 10px;
-  color: var(--secondary);
-}
-
-.component-info p {
-  color: var(--dark-gray);
-  margin-bottom: 15px;
-  font-size: 0.95rem;
 }
 
 /* Responsive */
