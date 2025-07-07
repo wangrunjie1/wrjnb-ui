@@ -9,11 +9,19 @@ export default defineNuxtConfig({
     head: {
       link: [
         {
-          rel: 'stylesheet',
-          href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
-        }
-      ]
-    }
+          rel: "stylesheet",
+          href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css",
+        },
+      ],
+      script: [
+        {
+          src:
+            process.env.NODE_ENV === "production"
+              ? "https://hm.baidu.com/hm.js?f4e09a1bc7ff3921b0ef21ee00d12f91"
+              : "",
+        },
+      ],
+    },
   },
   css: [
     "@/assets/global.css", // 全局样式

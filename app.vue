@@ -27,6 +27,15 @@
               :class="{ active: $route.path === '/about' }"
               >关于</NuxtLink
             >
+            <a
+              href="https://github.com/wangrunjie1/wrjnb-ui"
+              class="nav-link github-link"
+              target="_blank"
+              rel="noopener"
+              title="GitHub 仓库"
+            >
+              <i class="fab fa-github"></i>
+            </a>
           </div>
         </nav>
       </div>
@@ -204,6 +213,19 @@ header {
   height: 3px;
   background-color: var(--primary);
   border-radius: 2px;
+}
+
+.github-link {
+  font-size: 1.25em;
+  display: flex;
+  align-items: center;
+  padding-left: 6px;
+  color: #222;
+  transition: color 0.2s;
+}
+
+.github-link:hover {
+  color: var(--primary);
 }
 
 /* Main Content */
