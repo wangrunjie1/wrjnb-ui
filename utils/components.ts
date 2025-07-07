@@ -10,6 +10,8 @@ const componentConfigs = {
   Tag: () => import("~/components/Wrjnb/Tag/usage").then((m) => m.tagUsage),
   Alert: () =>
     import("~/components/Wrjnb/Alert/usage").then((m) => m.alertUsage),
+  Modal: () => import("~/components/Wrjnb/Modal/usage").then((m) => m.modalUsage),
+  Badge: () => import("~/components/Wrjnb/Badge/usage").then((m) => m.badgeUsage),
 };
 
 // 获取所有组件列表
