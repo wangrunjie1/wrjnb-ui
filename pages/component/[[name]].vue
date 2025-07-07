@@ -15,7 +15,8 @@
                     class="component-link"
                     :class="{
                       active:
-                        $route.params.name === component.name.toLowerCase(),
+                        ($route.params.name || 'button') ===
+                        component.name.toLowerCase(),
                     }"
                   >
                     {{ component.title }}
@@ -177,7 +178,7 @@ import DemoBlock from "~/components/DemoBlock.vue";
 
 // 获取路由参数
 const route = useRoute();
-const componentName = route.params.name;
+const componentName = route.params.name || "button";
 
 // 获取组件列表和当前组件
 const components = ref([]);

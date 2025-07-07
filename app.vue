@@ -22,18 +22,6 @@
               >组件</NuxtLink
             >
             <NuxtLink
-              to="/docs"
-              class="nav-link"
-              :class="{ active: $route.path === '/docs' }"
-              >文档</NuxtLink
-            >
-            <NuxtLink
-              to="/examples"
-              class="nav-link"
-              :class="{ active: $route.path === '/examples' }"
-              >示例</NuxtLink
-            >
-            <NuxtLink
               to="/about"
               class="nav-link"
               :class="{ active: $route.path === '/about' }"
