@@ -8,6 +8,14 @@ export const cardUsage: ComponentUsage = {
   description: "用于承载内容和操作，展示相关信息。",
   category: "基础组件",
   code: Code,
+  examples: [
+    {
+      title: "基础用法",
+      description: "卡片的全部用法演示。",
+      demo: Demo,
+      demoCode,
+    },
+  ],
   props: [
     {
       name: "title",
@@ -25,12 +33,4 @@ export const cardUsage: ComponentUsage = {
     },
   ],
   events: [],
-  examples: [
-    {
-      title: "卡片演示",
-      description: "卡片的全部用法演示。",
-      demo: Demo,
-      demoCode,
-    },
-  ],
 };

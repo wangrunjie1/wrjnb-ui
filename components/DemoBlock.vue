@@ -1,8 +1,5 @@
 <template>
   <div class="demo-block">
-    <div class="demo-block__preview">
-      <slot />
-    </div>
     <div class="demo-block__meta">
       <div class="demo-block__title">{{ title }}</div>
       <div class="demo-block__desc" v-if="description">{{ description }}</div>
@@ -13,6 +10,9 @@
         <template v-if="copied"> <i class="fas fa-check"></i> 已复制 </template>
         <template v-else> <i class="far fa-copy"></i> 复制代码 </template>
       </button>
+    </div>
+    <div class="demo-block__preview">
+      <slot />
     </div>
     <pre
       v-if="showCode"
@@ -85,7 +85,7 @@ const copyCode = () => {
 }
 .demo-block__toggle,
 .demo-block__copy {
-  margin-left: auto;
+  margin-left: 16px;
   background: #f1f8ff;
   color: #409eff;
   border: 1px solid #d1e5ff;
@@ -95,6 +95,11 @@ const copyCode = () => {
   cursor: pointer;
   transition: background 0.2s;
 }
+
+.demo-block__toggle {
+  margin-left: auto;
+}
+
 .demo-block__toggle:hover,
 .demo-block__copy:hover {
   background: #e1f0ff;

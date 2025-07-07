@@ -8,6 +8,14 @@ export const buttonUsage: ComponentUsage = {
   description: "按钮用于触发一个操作或事件，如提交表单、取消操作等。",
   category: "基础组件",
   code: Code,
+  examples: [
+    {
+      title: "基础用法",
+      description: "按钮的全部用法演示。",
+      demo: Demo,
+      demoCode,
+    },
+  ],
   props: [
     {
       name: "type",
@@ -36,14 +44,6 @@ export const buttonUsage: ComponentUsage = {
       name: "click",
       description: "点击按钮时触发",
       params: "event: MouseEvent",
-    },
-  ],
-  examples: [
-    {
-      title: "按钮演示",
-      description: "按钮的全部用法演示。",
-      demo: Demo,
-      demoCode,
     },
   ],
 };

@@ -8,6 +8,14 @@ export const switchUsage: ComponentUsage = {
   description: "用于在打开和关闭状态之间进行切换。",
   category: "表单组件",
   code: Code,
+  examples: [
+    {
+      title: "基础用法",
+      description: "开关的全部用法演示。",
+      demo: Demo,
+      demoCode,
+    },
+  ],
   props: [
     {
       name: "modelValue",
@@ -29,14 +37,6 @@ export const switchUsage: ComponentUsage = {
       name: "update:modelValue",
       description: "开关状态变化时触发",
       params: "value: boolean",
-    },
-  ],
-  examples: [
-    {
-      title: "开关演示",
-      description: "开关的全部用法演示。",
-      demo: Demo,
-      demoCode,
     },
   ],
 };

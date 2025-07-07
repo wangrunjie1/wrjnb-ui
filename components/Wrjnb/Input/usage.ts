@@ -10,7 +10,7 @@ export const inputUsage: ComponentUsage = {
   code: Code,
   examples: [
     {
-      title: "输入框演示",
+      title: "基础用法",
       description: "输入框的全部用法演示。",
       demo: Demo,
       demoCode,
