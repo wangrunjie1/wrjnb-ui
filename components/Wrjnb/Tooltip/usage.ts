@@ -46,5 +46,11 @@ export const tooltipUsage: ComponentUsage = {
       required: false,
     },
   ],
+  slots: [
+    {
+      name: "default",
+      description: "提示内容插槽，显示 tooltip 的内容。",
+    },
+  ],
   events: [],
 }; 

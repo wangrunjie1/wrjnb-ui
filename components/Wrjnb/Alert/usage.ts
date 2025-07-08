@@ -16,6 +16,16 @@ export const alertUsage: ComponentUsage = {
       demoCode,
     },
   ],
+  slots: [
+    {
+      name: "icon",
+      description: "自定义图标插槽。",
+    },
+    {
+      name: "default",
+      description: "警告内容插槽。",
+    },
+  ],
   props: [
     {
       name: "title",

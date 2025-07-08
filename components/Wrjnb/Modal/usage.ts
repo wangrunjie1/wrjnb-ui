@@ -46,6 +46,20 @@ export const modalUsage: ComponentUsage = {
       required: false,
     },
   ],
+  slots: [
+    {
+      name: "header",
+      description: "自定义弹窗头部内容。",
+    },
+    {
+      name: "footer",
+      description: "自定义弹窗底部内容。",
+    },
+    {
+      name: "default",
+      description: "弹窗主体内容。",
+    },
+  ],
   events: [
     {
       name: "update:modelValue",

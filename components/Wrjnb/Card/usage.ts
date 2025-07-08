@@ -46,6 +46,20 @@ export const cardUsage: ComponentUsage = {
       required: false,
     },
   ],
+  slots: [
+    {
+      name: "header",
+      description: "自定义卡片头部内容。",
+    },
+    {
+      name: "footer",
+      description: "自定义卡片底部内容。",
+    },
+    {
+      name: "default",
+      description: "卡片主体内容。",
+    },
+  ],
   events: [],
   // 插槽说明：header（自定义卡片头部内容）、footer（自定义卡片底部内容）、default（卡片主体内容）
 };

@@ -16,6 +16,12 @@ export const progressUsage: ComponentUsage = {
       demoCode,
     },
   ],
+  slots: [
+    {
+      name: "default",
+      description: "进度内容插槽，可自定义进度条内部内容。",
+    },
+  ],
   props: [
     {
       name: "percent",

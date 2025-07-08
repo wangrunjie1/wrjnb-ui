@@ -32,6 +32,16 @@ export const emptyUsage: ComponentUsage = {
       required: false,
     },
   ],
+  slots: [
+    {
+      name: "image",
+      description: "自定义图片插槽。",
+    },
+    {
+      name: "default",
+      description: "空状态内容插槽。",
+    },
+  ],
   events: [],
   // 支持 image、default 插槽
 }; 

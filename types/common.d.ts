@@ -22,4 +22,8 @@ interface ComponentUsage {
     demo: any;
     demoCode: string;
   }>;
+  slots?: Array<{
+    name: string;
+    description: string;
+  }>;
 }

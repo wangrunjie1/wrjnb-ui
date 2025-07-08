@@ -10,14 +10,24 @@ const componentConfigs = {
   Tag: () => import("~/components/Wrjnb/Tag/usage").then((m) => m.tagUsage),
   Alert: () =>
     import("~/components/Wrjnb/Alert/usage").then((m) => m.alertUsage),
-  Modal: () => import("~/components/Wrjnb/Modal/usage").then((m) => m.modalUsage),
-  Badge: () => import("~/components/Wrjnb/Badge/usage").then((m) => m.badgeUsage),
-  Progress: () => import("~/components/Wrjnb/Progress/usage").then((m) => m.progressUsage),
-  Tooltip: () => import("~/components/Wrjnb/Tooltip/usage").then((m) => m.tooltipUsage),
-  Divider: () => import("~/components/Wrjnb/Divider/usage").then((m) => m.dividerUsage),
-  Skeleton: () => import("~/components/Wrjnb/Skeleton/usage").then((m) => m.skeletonUsage),
-  Empty: () => import("~/components/Wrjnb/Empty/usage").then((m) => m.emptyUsage),
+  Modal: () =>
+    import("~/components/Wrjnb/Modal/usage").then((m) => m.modalUsage),
+  Badge: () =>
+    import("~/components/Wrjnb/Badge/usage").then((m) => m.badgeUsage),
+  Progress: () =>
+    import("~/components/Wrjnb/Progress/usage").then((m) => m.progressUsage),
+  Tooltip: () =>
+    import("~/components/Wrjnb/Tooltip/usage").then((m) => m.tooltipUsage),
+  Divider: () =>
+    import("~/components/Wrjnb/Divider/usage").then((m) => m.dividerUsage),
+  Skeleton: () =>
+    import("~/components/Wrjnb/Skeleton/usage").then((m) => m.skeletonUsage),
+  Empty: () =>
+    import("~/components/Wrjnb/Empty/usage").then((m) => m.emptyUsage),
+  Tabs: () => import("~/components/Wrjnb/Tabs/usage").then((m) => m.tabsUsage),
 };
+
+import { markRaw } from 'vue'
 
 // 获取所有组件列表
 export async function getAllComponents(): Promise<ComponentUsage[]> {
@@ -26,6 +36,13 @@ export async function getAllComponents(): Promise<ComponentUsage[]> {
   for (const [name, importFn] of Object.entries(componentConfigs)) {
     try {
       const config = await importFn();
+      // 修复：markRaw 包裹 demo，防止组件被响应式代理
+      if (config.examples) {
+        config.examples = config.examples.map(ex => ({
+          ...ex,
+          demo: markRaw(ex.demo)
+        }))
+      }
       components.push(config);
     } catch (error) {
       console.warn(`Failed to load component config for ${name}:`, error);
@@ -45,7 +62,15 @@ export async function getComponentByName(
   }
 
   try {
-    return await importFn();
+    const config = await importFn();
+    // 修复：markRaw 包裹 demo，防止组件被响应式代理
+    if (config.examples) {
+      config.examples = config.examples.map(ex => ({
+        ...ex,
+        demo: markRaw(ex.demo)
+      }))
+    }
+    return config;
   } catch (error) {
     console.warn(`Failed to load component config for ${name}:`, error);
     return null;
@@ -54,7 +79,14 @@ export async function getComponentByName(
 
 // 获取组件分类
 export function getComponentCategories(): string[] {
-  return ["基础组件", "表单组件", "数据展示", "反馈组件", "布局组件"];
+  return [
+    "基础组件",
+    "表单组件",
+    "数据展示",
+    "反馈组件",
+    "导航组件",
+    "布局组件",
+  ];
 }
 
 // 根据分类获取组件

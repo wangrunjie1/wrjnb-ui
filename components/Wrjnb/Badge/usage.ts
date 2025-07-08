@@ -39,6 +39,12 @@ export const badgeUsage: ComponentUsage = {
       required: false,
     },
   ],
+  slots: [
+    {
+      name: "default",
+      description: "徽标内容插槽，显示数字、点或自定义内容。",
+    },
+  ],
   events: [],
   // 包裹模式：有 slot 时徽章包裹内容，无 slot 时独立显示
 }; 

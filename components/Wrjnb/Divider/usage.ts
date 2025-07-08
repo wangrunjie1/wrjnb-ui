@@ -32,6 +32,12 @@ export const dividerUsage: ComponentUsage = {
       required: false,
     },
   ],
+  slots: [
+    {
+      name: "default",
+      description: "分割线内容插槽，可自定义分割线中间的内容。",
+    },
+  ],
   events: [],
   // 有内容时插槽 default
 }; 

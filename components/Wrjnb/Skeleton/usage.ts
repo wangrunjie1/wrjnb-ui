@@ -46,5 +46,11 @@ export const skeletonUsage: ComponentUsage = {
       required: false,
     },
   ],
+  slots: [
+    {
+      name: "default",
+      description: "骨架内容插槽，可自定义骨架屏内容。",
+    },
+  ],
   events: [],
 }; 

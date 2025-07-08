@@ -153,6 +153,32 @@
                 </tr>
               </tbody>
             </table>
+
+            <h3
+              v-if="currentComponent.slots && currentComponent.slots.length > 0"
+              style="margin: 40px 0 20px"
+            >
+              插槽说明
+            </h3>
+            <table
+              v-if="currentComponent.slots && currentComponent.slots.length > 0"
+              class="props-table"
+            >
+              <thead>
+                <tr>
+                  <th>插槽名</th>
+                  <th>说明</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="slot in currentComponent.slots" :key="slot.name">
+                  <td>
+                    <span class="prop-name">{{ slot.name }}</span>
+                  </td>
+                  <td>{{ slot.description }}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <!-- 404 状态 -->

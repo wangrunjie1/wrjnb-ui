@@ -60,6 +60,12 @@ export const buttonUsage: ComponentUsage = {
       required: false,
     },
   ],
+  slots: [
+    {
+      name: "default",
+      description: "按钮内容插槽，显示按钮文本或自定义内容。",
+    },
+  ],
   events: [
     {
       name: "click",

@@ -60,6 +60,16 @@ export const inputUsage: ComponentUsage = {
       required: false,
     },
   ],
+  slots: [
+    {
+      name: "prefix",
+      description: "输入框前缀内容插槽。",
+    },
+    {
+      name: "suffix",
+      description: "输入框后缀内容插槽。",
+    },
+  ],
   events: [
     {
       name: "update:modelValue",
