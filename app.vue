@@ -159,6 +159,7 @@ header {
   position: sticky;
   top: 0;
   z-index: 100;
+  height: 78px;
 }
 
 .navbar {
@@ -238,7 +239,6 @@ footer {
   background: var(--secondary);
   color: white;
   padding: 60px 0 30px;
-  margin-top: 80px;
 }
 
 .footer-content {

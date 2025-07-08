@@ -12,6 +12,11 @@ const componentConfigs = {
     import("~/components/Wrjnb/Alert/usage").then((m) => m.alertUsage),
   Modal: () => import("~/components/Wrjnb/Modal/usage").then((m) => m.modalUsage),
   Badge: () => import("~/components/Wrjnb/Badge/usage").then((m) => m.badgeUsage),
+  Progress: () => import("~/components/Wrjnb/Progress/usage").then((m) => m.progressUsage),
+  Tooltip: () => import("~/components/Wrjnb/Tooltip/usage").then((m) => m.tooltipUsage),
+  Divider: () => import("~/components/Wrjnb/Divider/usage").then((m) => m.dividerUsage),
+  Skeleton: () => import("~/components/Wrjnb/Skeleton/usage").then((m) => m.skeletonUsage),
+  Empty: () => import("~/components/Wrjnb/Empty/usage").then((m) => m.emptyUsage),
 };
 
 // 获取所有组件列表

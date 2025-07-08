@@ -1,28 +1,38 @@
 <template>
   <div>
     <!-- Component Detail Section -->
-    <section class="section" style="background: #f5f7fa; padding-top: 40px">
+    <section class="section">
       <div class="container">
         <div class="detail-container">
           <!-- Sidebar -->
           <div class="sidebar">
             <div class="sidebar-card">
               <h3 class="sidebar-title">组件列表</h3>
-              <ul class="component-list">
-                <li v-for="component in components" :key="component.name">
-                  <NuxtLink
-                    :to="`/component/${component.name.toLowerCase()}`"
-                    class="component-link"
-                    :class="{
-                      active:
-                        ($route.params.name || 'button') ===
-                        component.name.toLowerCase(),
-                    }"
+              <div
+                v-for="category in categories"
+                :key="category"
+                class="category-group"
+              >
+                <div class="category-title">{{ category }}</div>
+                <ul class="component-list">
+                  <li
+                    v-for="component in groupedComponents[category]"
+                    :key="component.name"
                   >
-                    {{ component.title }}
-                  </NuxtLink>
-                </li>
-              </ul>
+                    <NuxtLink
+                      :to="`/component/${component.name.toLowerCase()}`"
+                      class="component-link"
+                      :class="{
+                        active:
+                          ($route.params.name || 'button') ===
+                          component.name.toLowerCase(),
+                      }"
+                    >
+                      {{ component.title }}
+                    </NuxtLink>
+                  </li>
+                </ul>
+              </div>
             </div>
 
             <div class="sidebar-card">
@@ -173,7 +183,11 @@
 </template>
 
 <script setup>
-import { getAllComponents, getComponentByName } from "~/utils/components";
+import {
+  getAllComponents,
+  getComponentByName,
+  getComponentCategories,
+} from "~/utils/components";
 import DemoBlock from "~/components/DemoBlock.vue";
 
 // 获取路由参数
@@ -205,22 +219,28 @@ useHead({
   ],
 });
 
-// onMounted(async () => {
-try {
-  // 获取所有组件
-  components.value = await getAllComponents();
+const categories = getComponentCategories();
+const groupedComponents = ref({});
 
-  // 如果有组件名参数，获取当前组件
+async function initAllComponents() {
+  const all = await getAllComponents();
+  components.value = all;
+  // 分组
+  const group = {};
+  for (const cat of categories) {
+    group[cat] = all.filter((c) => c.category === cat);
+  }
+  groupedComponents.value = group;
+  // 当前组件
   if (componentName) {
     const name =
       String(componentName).charAt(0).toUpperCase() +
       String(componentName).slice(1);
     currentComponent.value = await getComponentByName(name);
   }
-} catch (error) {
-  console.error("Failed to load components:", error);
 }
-// });
+
+await initAllComponents();
 
 // 监听路由变化
 watch(
@@ -248,13 +268,12 @@ const copyComponentCode = () => {
 
 <style scoped>
 .section {
-  padding: 80px 0;
+  background: #f5f7fa;
 }
 
 .detail-container {
   display: flex;
   gap: 30px;
-  margin-top: 30px;
 }
 
 .component-detail {
@@ -263,6 +282,8 @@ const copyComponentCode = () => {
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding: 30px;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
 .detail-header {
@@ -391,8 +412,16 @@ code {
 .sidebar {
   width: 260px;
   position: sticky;
-  top: 100px;
+  top: 78px;
   align-self: flex-start;
+  max-height: calc(100vh - 78px);
+  overflow-y: auto;
+  padding-top: 40px;
+  padding-bottom: 20px;
+  box-sizing: border-box;
+  &::-webkit-scrollbar {
+    width: 0px;
+  }
 }
 
 .sidebar-card {
@@ -413,30 +442,63 @@ code {
 
 .component-list {
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
-
 .component-list li {
-  margin-bottom: 10px;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  list-style: none;
 }
 
 .component-link {
   text-decoration: none;
   color: var(--dark-gray);
-  display: block;
-  padding: 8px 0;
-  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  padding: 7px 10px 7px 0;
+  border-radius: 6px;
   border-left: 3px solid transparent;
+  font-size: 1rem;
+  transition: background 0.18s, color 0.18s, border 0.18s;
+  position: relative;
+  width: 100%;
   padding-left: 10px;
 }
 
 .component-link:hover {
+  background: #f5f7fa;
   color: var(--primary);
 }
 
 .component-link.active {
   color: var(--primary);
-  border-left: 3px solid var(--primary);
+  background: #eaf6ff;
+  font-weight: 600;
+}
+
+.category-title {
+  display: flex;
+  align-items: center;
+  font-size: 0.98rem;
   font-weight: 500;
+  color: #888;
+  margin: 22px 0 8px 0;
+  padding-left: 0;
+  letter-spacing: 0.5px;
+}
+.category-title::before {
+  content: "";
+  display: inline-block;
+  width: 4px;
+  height: 16px;
+  border-radius: 2px;
+  margin-right: 8px;
+  background: linear-gradient(135deg, var(--primary), #6ec6ff 80%);
+}
+.category-group:not(:first-child) {
+  margin-top: 28px;
 }
 
 /* Responsive */
@@ -447,6 +509,8 @@ code {
 
   .sidebar {
     width: 100%;
+    max-height: none;
+    overflow-y: visible;
   }
 }
 </style>

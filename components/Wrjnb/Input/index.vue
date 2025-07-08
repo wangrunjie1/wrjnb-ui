@@ -1,6 +1,15 @@
 <template>
-  <div class="wrjnb-input-wrapper" :class="{ 'is-disabled': disabled, 'is-readonly': readonly, 'is-focus': isFocus }">
-    <span v-if="$slots.prefix" class="wrjnb-input__prefix"><slot name="prefix" /></span>
+  <div
+    class="wrjnb-input-wrapper"
+    :class="{
+      'is-disabled': disabled,
+      'is-readonly': readonly,
+      'is-focus': isFocus,
+    }"
+  >
+    <span v-if="$slots.prefix" class="wrjnb-input__prefix"
+      ><slot name="prefix"
+    /></span>
     <input
       class="wrjnb-input"
       :type="type"
@@ -12,31 +21,41 @@
       @focus="isFocus = true"
       @blur="isFocus = false"
     />
-    <span v-if="clearable && modelValue && !disabled && !readonly" class="wrjnb-input__clear" @mousedown.prevent="clearInput">×</span>
-    <span v-if="$slots.suffix" class="wrjnb-input__suffix"><slot name="suffix" /></span>
+    <span
+      v-if="clearable && modelValue && !disabled && !readonly"
+      class="wrjnb-input__clear"
+      @mousedown.prevent="clearInput"
+      >×</span
+    >
+    <span v-if="$slots.suffix" class="wrjnb-input__suffix"
+      ><slot name="suffix"
+    /></span>
   </div>
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits, ref } from 'vue';
+import { defineProps, defineEmits, ref } from "vue";
 
 const props = defineProps({
   modelValue: [String, Number],
-  placeholder: { type: String, default: '' },
-  type: { type: String as () => 'text' | 'password' | 'number', default: 'text' },
+  placeholder: { type: String, default: "" },
+  type: {
+    type: String as () => "text" | "password" | "number",
+    default: "text",
+  },
   disabled: { type: Boolean, default: false },
   readonly: { type: Boolean, default: false },
   clearable: { type: Boolean, default: false },
 });
-const emit = defineEmits(['update:modelValue']);
+const emit = defineEmits(["update:modelValue"]);
 const isFocus = ref(false);
 
 function onInput(e: Event) {
   const val = (e.target as HTMLInputElement).value;
-  emit('update:modelValue', val);
+  emit("update:modelValue", val);
 }
 function clearInput() {
-  emit('update:modelValue', '');
+  emit("update:modelValue", "");
 }
 </script>
 
@@ -64,8 +83,8 @@ function clearInput() {
     }
   }
   &.is-readonly {
+    background: #f8f8f8;
     .wrjnb-input {
-      background: #f8f8f8;
       color: #888;
       cursor: default;
     }
@@ -100,4 +119,4 @@ function clearInput() {
     color: #f56c6c;
   }
 }
-</style> 
+</style>
