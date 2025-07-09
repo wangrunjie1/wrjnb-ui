@@ -1,5 +1,9 @@
-import Demo from "./demo.vue";
-import demoCode from "./demo.vue?raw";
+import Demo1 from "./demo1.vue";
+import demo1Code from "./demo1.vue?raw";
+import Demo2 from "./demo2.vue";
+import demo2Code from "./demo2.vue?raw";
+import Demo3 from "./demo3.vue";
+import demo3Code from "./demo3.vue?raw";
 import Code from "./index.vue?raw";
 
 export const tabsUsage: ComponentUsage = {
@@ -10,10 +14,22 @@ export const tabsUsage: ComponentUsage = {
   code: Code,
   examples: [
     {
-      title: "全部用法",
-      description: "Tabs 的全部用法演示，包括横向、纵向、禁用、自定义 label。",
-      demo: Demo,
-      demoCode,
+      title: "基础用法",
+      description: "最基础的标签页用法。",
+      demo: Demo1,
+      demoCode: demo1Code,
+    },
+    {
+      title: "纵向标签页",
+      description: "通过 direction 属性设置为 vertical。",
+      demo: Demo2,
+      demoCode: demo2Code,
+    },
+    {
+      title: "自定义 label",
+      description: "通过 label 插槽自定义标签内容。",
+      demo: Demo3,
+      demoCode: demo3Code,
     },
   ],
   props: [
