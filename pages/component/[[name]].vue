@@ -245,7 +245,7 @@ useHead({
   ],
 });
 
-const categories = getComponentCategories();
+const categories = await getComponentCategories();
 const groupedComponents = ref({});
 
 async function initAllComponents() {
