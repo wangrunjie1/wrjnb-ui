@@ -59,5 +59,5 @@ export default defineNuxtConfig({
     "@/assets/global.css", // 全局样式
   ],
 
-  modules: ["@nuxtjs/sitemap"],
+  modules: ["@nuxtjs/sitemap", "@nuxtjs/robots"],
 });
