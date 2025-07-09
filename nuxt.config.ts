@@ -60,4 +60,5 @@ export default defineNuxtConfig({
   ],
 
   modules: ["@nuxtjs/sitemap", "@nuxtjs/robots"],
+  site: { url: "https://ui.wrjnb.top", name: "wrjnb UI" },
 });
