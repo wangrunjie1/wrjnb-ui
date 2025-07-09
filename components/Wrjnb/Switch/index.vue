@@ -69,6 +69,7 @@ function onToggle() {
   &.wrjnb-switch--large {
     width: 60px;
     height: 32px;
+    border-radius: 16px;
     .wrjnb-switch__core {
       width: 28px;
       height: 28px;

@@ -1,6 +1,10 @@
-import Demo from "./demo.vue";
-import demoCode from "./demo.vue?raw";
-import Code from "./index.vue?raw";
+import Demo1 from "./demo1.vue"
+import demo1Code from "./demo1.vue?raw"
+import Demo2 from "./demo2.vue"
+import demo2Code from "./demo2.vue?raw"
+import Demo3 from "./demo3.vue"
+import demo3Code from "./demo3.vue?raw"
+import Code from "./index.vue?raw"
 
 export const switchUsage: ComponentUsage = {
   name: "Switch",
@@ -10,10 +14,22 @@ export const switchUsage: ComponentUsage = {
   code: Code,
   examples: [
     {
-      title: "全部用法",
-      description: "开关的全部用法演示，包括禁用、加载、自定义颜色、尺寸等。",
-      demo: Demo,
-      demoCode,
+      title: "基础/禁用/加载用法",
+      description: "基础用法、禁用、加载状态对比。",
+      demo: Demo1,
+      demoCode: demo1Code,
+    },
+    {
+      title: "自定义颜色",
+      description: "通过 activeColor/inactiveColor 属性自定义颜色。",
+      demo: Demo2,
+      demoCode: demo2Code,
+    },
+    {
+      title: "小号/大号",
+      description: "size 属性为 small/large。",
+      demo: Demo3,
+      demoCode: demo3Code,
     },
   ],
   props: [
@@ -67,4 +83,5 @@ export const switchUsage: ComponentUsage = {
       params: "value: boolean",
     },
   ],
-};
+  slots: [],
+}
