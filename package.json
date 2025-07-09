@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@nuxtjs/sitemap": "^7.4.3",
     "nuxt": "^3.17.6",
     "prismjs": "^1.30.0",
     "vue": "^3.5.17",
