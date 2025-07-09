@@ -1,6 +1,6 @@
-import Demo from "./demo.vue";
-import demoCode from "./demo.vue?raw";
-import Code from "./index.vue?raw";
+import Demo from "./demo.vue"
+import demoCode from "./demo.vue?raw"
+import Code from "./index.vue?raw"
 
 export const alertUsage: ComponentUsage = {
   name: "Alert",
@@ -70,4 +70,4 @@ export const alertUsage: ComponentUsage = {
       params: "event: MouseEvent",
     },
   ],
-}; 
+}

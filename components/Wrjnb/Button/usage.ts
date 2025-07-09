@@ -1,5 +1,7 @@
-import Demo from "./demo.vue";
-import demoCode from "./demo.vue?raw";
+import Demo1 from "./demo1.vue";
+import demo1Code from "./demo1.vue?raw";
+import Demo2 from "./demo2.vue";
+import demo2Code from "./demo2.vue?raw";
 import Code from "./index.vue?raw";
 
 export const buttonUsage: ComponentUsage = {
@@ -10,10 +12,16 @@ export const buttonUsage: ComponentUsage = {
   code: Code,
   examples: [
     {
-      title: "全部用法",
-      description: "按钮的全部用法演示，包括类型、尺寸、加载、禁用、圆角、块级等。",
-      demo: Demo,
-      demoCode,
+      title: "基础用法",
+      description: "按钮的基础用法，包括不同类型。",
+      demo: Demo1,
+      demoCode: demo1Code,
+    },
+    {
+      title: "更多用法",
+      description: "禁用、加载、尺寸、圆角、块级等。",
+      demo: Demo2,
+      demoCode: demo2Code,
     },
   ],
   props: [

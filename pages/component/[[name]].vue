@@ -8,24 +8,15 @@
           <div class="sidebar">
             <div class="sidebar-card">
               <h3 class="sidebar-title">组件列表</h3>
-              <div
-                v-for="category in categories"
-                :key="category"
-                class="category-group"
-              >
+              <div v-for="category in categories" :key="category" class="category-group">
                 <div class="category-title">{{ category }}</div>
                 <ul class="component-list">
-                  <li
-                    v-for="component in groupedComponents[category]"
-                    :key="component.name"
-                  >
+                  <li v-for="component in groupedComponents[category]" :key="component.name">
                     <NuxtLink
                       :to="`/component/${component.name.toLowerCase()}`"
                       class="component-link"
                       :class="{
-                        active:
-                          ($route.params.name || 'button') ===
-                          component.name.toLowerCase(),
+                        active: ($route.params.name || 'alert') === component.name.toLowerCase(),
                       }"
                     >
                       {{ component.title }}
@@ -39,24 +30,16 @@
               <h3 class="sidebar-title">设计资源</h3>
               <ul class="component-list">
                 <li>
-                  <NuxtLink to="/design/principles" class="component-link"
-                    >设计原则</NuxtLink
-                  >
+                  <NuxtLink to="/design/principles" class="component-link">设计原则</NuxtLink>
                 </li>
                 <li>
-                  <NuxtLink to="/design/colors" class="component-link"
-                    >色彩系统</NuxtLink
-                  >
+                  <NuxtLink to="/design/colors" class="component-link">色彩系统</NuxtLink>
                 </li>
                 <li>
-                  <NuxtLink to="/design/layout" class="component-link"
-                    >布局指南</NuxtLink
-                  >
+                  <NuxtLink to="/design/layout" class="component-link">布局指南</NuxtLink>
                 </li>
                 <li>
-                  <NuxtLink to="/design/icons" class="component-link"
-                    >图标库</NuxtLink
-                  >
+                  <NuxtLink to="/design/icons" class="component-link">图标库</NuxtLink>
                 </li>
               </ul>
             </div>
@@ -69,15 +52,8 @@
               <p>{{ currentComponent.description }}</p>
             </div>
 
-            <div
-              v-for="(example, index) in currentComponent.examples"
-              :key="index"
-            >
-              <DemoBlock
-                :title="example.title"
-                :description="example.description"
-                :code="example.demoCode"
-              >
+            <div v-for="(example, index) in currentComponent.examples" :key="index">
+              <DemoBlock :title="example.title" :description="example.description" :code="example.demoCode">
                 <component :is="example.demo" />
               </DemoBlock>
             </div>
@@ -85,17 +61,9 @@
             <div class="code-section">
               <div class="code-header">
                 <h3>组件代码</h3>
-                <button
-                  class="copy-btn"
-                  data-clipboard-target="#code-2"
-                  @click="copyComponentCode"
-                >
-                  <template v-if="copiedComponentCode">
-                    <i class="fas fa-check"></i> 已复制
-                  </template>
-                  <template v-else>
-                    <i class="far fa-copy"></i> 复制代码
-                  </template>
+                <button class="copy-btn" data-clipboard-target="#code-2" @click="copyComponentCode">
+                  <template v-if="copiedComponentCode"> <i class="fas fa-check"></i> 已复制 </template>
+                  <template v-else> <i class="far fa-copy"></i> 复制代码 </template>
                 </button>
               </div>
               <pre><code id="code-2" class="javascript">{{ currentComponent.code }}</code></pre>
@@ -126,16 +94,8 @@
               </tbody>
             </table>
 
-            <h3
-              v-if="currentComponent.events.length > 0"
-              style="margin: 40px 0 20px"
-            >
-              事件说明
-            </h3>
-            <table
-              v-if="currentComponent.events.length > 0"
-              class="props-table"
-            >
+            <h3 v-if="currentComponent.events.length > 0" style="margin: 40px 0 20px">事件说明</h3>
+            <table v-if="currentComponent.events.length > 0" class="props-table">
               <thead>
                 <tr>
                   <th>事件名</th>
@@ -154,16 +114,8 @@
               </tbody>
             </table>
 
-            <h3
-              v-if="currentComponent.slots && currentComponent.slots.length > 0"
-              style="margin: 40px 0 20px"
-            >
-              插槽说明
-            </h3>
-            <table
-              v-if="currentComponent.slots && currentComponent.slots.length > 0"
-              class="props-table"
-            >
+            <h3 v-if="currentComponent.slots && currentComponent.slots.length > 0" style="margin: 40px 0 20px">插槽说明</h3>
+            <table v-if="currentComponent.slots && currentComponent.slots.length > 0" class="props-table">
               <thead>
                 <tr>
                   <th>插槽名</th>
@@ -192,9 +144,7 @@
               <div class="demo-content">
                 <ul>
                   <li v-for="component in components" :key="component.name">
-                    <NuxtLink
-                      :to="`/component/${component.name.toLowerCase()}`"
-                    >
+                    <NuxtLink :to="`/component/${component.name.toLowerCase()}`">
                       {{ component.title }}
                     </NuxtLink>
                   </li>
@@ -209,87 +159,80 @@
 </template>
 
 <script setup>
-import {
-  getAllComponents,
-  getComponentByName,
-  getComponentCategories,
-} from "~/utils/components";
-import DemoBlock from "~/components/DemoBlock.vue";
+import { getAllComponents, getComponentByName, getComponentCategories } from "~/utils/components"
+import DemoBlock from "~/components/DemoBlock.vue"
 
 // 获取路由参数
-const route = useRoute();
-const componentName = route.params.name || "button";
+const route = useRoute()
+const componentName = route.params.name || "Alert"
 
 // 获取组件列表和当前组件
-const components = ref([]);
-const currentComponent = ref(null);
+const components = ref([])
+const currentComponent = ref(null)
 
 // 页面标题
 useHead({
   title: computed(() => {
     if (currentComponent.value) {
-      return `${currentComponent.value.title} - Wrjnb UI`;
+      return `${currentComponent.value.title} - Wrjnb UI`
     }
-    return "组件详情 - Wrjnb UI";
+    return "组件详情 - Wrjnb UI"
   }),
   meta: [
     {
       name: "description",
       content: computed(() => {
         if (currentComponent.value) {
-          return `${currentComponent.value.description} - Wrjnb UI 组件详情页面`;
+          return `${currentComponent.value.description} - Wrjnb UI 组件详情页面`
         }
-        return "Wrjnb UI 组件详情页面，包含组件演示、代码示例和属性说明。";
+        return "Wrjnb UI 组件详情页面，包含组件演示、代码示例和属性说明。"
       }),
     },
   ],
-});
+})
 
-const categories = await getComponentCategories();
-const groupedComponents = ref({});
+const categories = await getComponentCategories()
+const groupedComponents = ref({})
 
 async function initAllComponents() {
-  const all = await getAllComponents();
-  components.value = all;
+  const all = await getAllComponents()
+  components.value = all
   // 分组
-  const group = {};
+  const group = {}
   for (const cat of categories) {
-    group[cat] = all.filter((c) => c.category === cat);
+    group[cat] = all.filter((c) => c.category === cat)
   }
-  groupedComponents.value = group;
+  groupedComponents.value = group
   // 当前组件
   if (componentName) {
-    const name =
-      String(componentName).charAt(0).toUpperCase() +
-      String(componentName).slice(1);
-    currentComponent.value = await getComponentByName(name);
+    const name = String(componentName).charAt(0).toUpperCase() + String(componentName).slice(1)
+    currentComponent.value = await getComponentByName(name)
   }
 }
 
-await initAllComponents();
+await initAllComponents()
 
 // 监听路由变化
 watch(
   () => route.params.name,
   async (newName) => {
     if (newName) {
-      const name =
-        String(newName).charAt(0).toUpperCase() + String(newName).slice(1);
-      currentComponent.value = await getComponentByName(name);
+      const name = String(newName).charAt(0).toUpperCase() + String(newName).slice(1)
+      currentComponent.value = await getComponentByName(name)
     }
-  }
-);
+  },
+)
 
 // 复制代码功能
-const copiedComponentCode = ref(false);
+const copiedComponentCode = ref(false)
 const copyComponentCode = () => {
   if (currentComponent.value && currentComponent.value.code) {
     navigator.clipboard.writeText(currentComponent.value.code).then(() => {
-      copiedComponentCode.value = true;
-      setTimeout(() => (copiedComponentCode.value = false), 1500);
-    });
+      copiedComponentCode.value = true
+      setTimeout(() => (copiedComponentCode.value = false), 1500)
+    })
   }
-};
+}
 </script>
 
 <style scoped>

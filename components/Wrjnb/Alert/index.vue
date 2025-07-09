@@ -2,104 +2,100 @@
   <div class="wrjnb-alert" :class="[`wrjnb-alert--${type}`, { 'is-closable': closable }]">
     <span v-if="showIcon" class="wrjnb-alert__icon">{{ iconMap[type] }}</span>
     <div class="wrjnb-alert__content">
-      <div class="wrjnb-alert__title">
-        <slot>{{ title }}</slot>
+      <div v-if="title" class="wrjnb-alert__title">{{ title }}</div>
+      <div v-if="description || $slots.default" class="wrjnb-alert__desc">
+        <slot>{{ description }}</slot>
       </div>
-      <div v-if="description" class="wrjnb-alert__desc">{{ description }}</div>
     </div>
-    <span v-if="closable" class="wrjnb-alert__close" @click="handleClose">×</span>
+    <button v-if="closable" class="wrjnb-alert__close" @click="close">×</button>
   </div>
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits, ref } from 'vue';
+import { defineProps, defineEmits, ref } from "vue"
 const props = defineProps({
-  title: { type: String, default: '' },
-  type: { type: String as () => 'info' | 'success' | 'warning' | 'error', default: 'info' },
-  description: { type: String, default: '' },
+  type: { type: String as () => "info" | "success" | "warning" | "error", default: "info" },
+  title: { type: String, default: "" },
+  description: { type: String, default: "" },
   closable: { type: Boolean, default: false },
   showIcon: { type: Boolean, default: true },
-});
-const emit = defineEmits(['close']);
-const visible = ref(true);
-const iconMap: Record<string, string> = {
-  info: 'ℹ️',
-  success: '✔️',
-  warning: '⚠️',
-  error: '⛔',
-};
-function handleClose(e: MouseEvent) {
-  visible.value = false;
-  emit('close', e);
+})
+const emit = defineEmits(["close"])
+const visible = ref(true)
+const iconMap = {
+  info: "ℹ️",
+  success: "✅",
+  warning: "⚠️",
+  error: "❌",
+}
+function close() {
+  visible.value = false
+  emit("close")
 }
 </script>
 
-<style lang="scss">
-$info: #909399;
-$success: #67c23a;
-$warning: #e6a23c;
-$error: #f56c6c;
-$radius: 4px;
-
+<style lang="scss" scoped>
 .wrjnb-alert {
   display: flex;
   align-items: flex-start;
-  border-radius: $radius;
-  padding: 1em 1.2em;
-  font-size: 1rem;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 1em;
   background: #f4f4f5;
   color: #333;
   border: 1px solid #ebeef5;
   position: relative;
-  margin-bottom: 1em;
-  &.wrjnb-alert--info {
-    border-color: $info;
-    background: #f4f4f5;
-    color: $info;
-  }
-  &.wrjnb-alert--success {
-    border-color: $success;
-    background: #f0f9eb;
-    color: $success;
-  }
-  &.wrjnb-alert--warning {
-    border-color: $warning;
-    background: #fdf6ec;
-    color: $warning;
-  }
-  &.wrjnb-alert--error {
-    border-color: $error;
-    background: #fef0f0;
-    color: $error;
-  }
-  .wrjnb-alert__icon {
-    font-size: 1.5em;
-    margin-right: 0.7em;
-    line-height: 1;
-    flex-shrink: 0;
-  }
-  .wrjnb-alert__content {
-    flex: 1;
-  }
-  .wrjnb-alert__title {
-    font-weight: bold;
-    margin-bottom: 0.2em;
-  }
-  .wrjnb-alert__desc {
-    font-size: 0.96em;
-    color: #666;
-    margin-top: 0.2em;
-  }
-  .wrjnb-alert__close {
-    margin-left: 1em;
-    font-size: 1.2em;
-    cursor: pointer;
-    opacity: 0.7;
-    transition: opacity 0.2s;
-    &:hover {
-      opacity: 1;
-      color: #f56c6c;
-    }
-  }
+  margin: 8px 0;
+  transition: all 0.2s;
 }
-</style> 
+.wrjnb-alert__icon {
+  font-size: 1.5em;
+  margin-right: 12px;
+  line-height: 1.2;
+}
+.wrjnb-alert__content {
+  flex: 1;
+}
+.wrjnb-alert__title {
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+.wrjnb-alert__desc {
+  font-size: 0.98em;
+  color: #666;
+}
+.wrjnb-alert__close {
+  background: none;
+  border: none;
+  font-size: 1.2em;
+  color: #bbb;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  transition: color 0.2s;
+}
+.wrjnb-alert__close:hover {
+  color: #888;
+}
+.wrjnb-alert--success {
+  background: #f0f9eb;
+  border-color: #e1f3d8;
+  color: #52c41a;
+}
+.wrjnb-alert--info {
+  background: #f4f4f5;
+  border-color: #ebeef5;
+  color: #409eff;
+}
+.wrjnb-alert--warning {
+  background: #fffbe6;
+  border-color: #faecd8;
+  color: #faad14;
+}
+.wrjnb-alert--error {
+  background: #fef0f0;
+  border-color: #fde2e2;
+  color: #f56c6c;
+}
+</style>
