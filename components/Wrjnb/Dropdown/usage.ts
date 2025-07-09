@@ -1,5 +1,15 @@
-import Demo from "./demo.vue";
-import demoCode from "./demo.vue?raw";
+import Demo1 from "./demo1.vue";
+import demo1Code from "./demo1.vue?raw";
+import Demo2 from "./demo2.vue";
+import demo2Code from "./demo2.vue?raw";
+import Demo3 from "./demo3.vue";
+import demo3Code from "./demo3.vue?raw";
+import Demo4 from "./demo4.vue";
+import demo4Code from "./demo4.vue?raw";
+import Demo5 from "./demo5.vue";
+import demo5Code from "./demo5.vue?raw";
+import Demo6 from "./demo6.vue";
+import demo6Code from "./demo6.vue?raw";
 import Code from "./index.vue?raw";
 
 export const dropdownUsage: ComponentUsage = {
@@ -13,45 +23,45 @@ export const dropdownUsage: ComponentUsage = {
     {
       title: "基础用法",
       description: "最基础的下拉菜单用法，支持 items 配置菜单项。",
-      demo: Demo,
-      demoCode,
+      demo: Demo1,
+      demoCode: demo1Code,
     },
     {
       title: "自定义触发器",
-      description: "通过 trigger 插槽自定义触发按钮，支持使用 WrjnbButton。",
-      demo: Demo,
-      demoCode,
+      description: "通过 trigger 插槽自定义触发按钮，支持使用自定义按钮。",
+      demo: Demo2,
+      demoCode: demo2Code,
     },
     {
       title: "自定义菜单内容",
       description: "通过 menu 插槽自定义菜单内容，可实现分组、复杂内容等。",
-      demo: Demo,
-      demoCode,
+      demo: Demo3,
+      demoCode: demo3Code,
     },
     {
       title: "禁用状态",
       description: "通过 disabled 属性禁用下拉菜单。",
-      demo: Demo,
-      demoCode,
+      demo: Demo4,
+      demoCode: demo4Code,
     },
     {
       title: "带图标菜单",
       description: "菜单项支持 icon 字段，展示图标。",
-      demo: Demo,
-      demoCode,
+      demo: Demo5,
+      demoCode: demo5Code,
     },
     {
       title: "分组菜单",
       description: "通过 menu 插槽自定义分组菜单。",
-      demo: Demo,
-      demoCode,
+      demo: Demo6,
+      demoCode: demo6Code,
     },
   ],
   props: [
     {
       name: "items",
       description: "菜单项数组，格式为 { label, value, disabled?, icon? }。",
-      type: "Array<{ label: string; value: any; disabled?: boolean; icon?: string }>",
+      type: "Array<{ label: string; value: any; disabled?: boolean; icon?: string }>" ,
       default: "[]",
       required: false,
     },
@@ -122,7 +132,7 @@ export const dropdownUsage: ComponentUsage = {
   slots: [
     {
       name: "trigger",
-      description: "自定义触发器插槽，建议用 WrjnbButton。",
+      description: "自定义触发器插槽，建议用按钮。",
     },
     {
       name: "menu",

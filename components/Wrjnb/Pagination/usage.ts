@@ -1,5 +1,11 @@
-import Demo from "./demo.vue";
-import demoCode from "./demo.vue?raw";
+import Demo1 from "./demo1.vue";
+import demo1Code from "./demo1.vue?raw";
+import Demo2 from "./demo2.vue";
+import demo2Code from "./demo2.vue?raw";
+import Demo3 from "./demo3.vue";
+import demo3Code from "./demo3.vue?raw";
+import Demo4 from "./demo4.vue";
+import demo4Code from "./demo4.vue?raw";
 import Code from "./index.vue?raw";
 
 export const paginationUsage: ComponentUsage = {
@@ -12,26 +18,26 @@ export const paginationUsage: ComponentUsage = {
     {
       title: "基础用法",
       description: "最基础的分页器用法，支持 v-model 双向绑定当前页。",
-      demo: Demo,
-      demoCode,
+      demo: Demo1,
+      demoCode: demo1Code,
     },
     {
       title: "禁用状态",
       description: "通过 disabled 属性禁用分页器。",
-      demo: Demo,
-      demoCode,
+      demo: Demo2,
+      demoCode: demo2Code,
     },
     {
       title: "显示跳转",
       description: "通过 show-jumper 属性显示快速跳转输入框。",
-      demo: Demo,
-      demoCode,
+      demo: Demo3,
+      demoCode: demo3Code,
     },
     {
       title: "自定义页码按钮数量",
       description: "通过 pager-count 属性自定义显示的页码按钮数量。",
-      demo: Demo,
-      demoCode,
+      demo: Demo4,
+      demoCode: demo4Code,
     },
   ],
   props: [
