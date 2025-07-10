@@ -5,28 +5,13 @@
       <div class="container">
         <nav class="navbar">
           <NuxtLink to="/" class="logo">
-            <i class="fas fa-cube logo-icon"></i>
+            <img src="/public/logo.png" class="logo-icon" alt="wrjnb ui" />
             Wrjnb UI
           </NuxtLink>
           <div class="nav-links">
-            <NuxtLink
-              to="/"
-              class="nav-link"
-              :class="{ active: $route.path === '/' }"
-              >首页</NuxtLink
-            >
-            <NuxtLink
-              to="/component"
-              class="nav-link"
-              :class="{ active: $route.path === '/component' }"
-              >组件</NuxtLink
-            >
-            <NuxtLink
-              to="/about"
-              class="nav-link"
-              :class="{ active: $route.path === '/about' }"
-              >关于</NuxtLink
-            >
+            <NuxtLink to="/" class="nav-link" :class="{ active: $route.path === '/' }">首页</NuxtLink>
+            <NuxtLink to="/component" class="nav-link" :class="{ active: $route.path === '/component' }">组件</NuxtLink>
+            <NuxtLink to="/about" class="nav-link" :class="{ active: $route.path === '/about' }">关于</NuxtLink>
             <a
               href="https://github.com/wangrunjie1/wrjnb-ui"
               class="nav-link github-link"
@@ -52,10 +37,7 @@
         <div class="footer-content">
           <div class="footer-col">
             <h3>Wrjnb UI</h3>
-            <p>
-              提供高质量的Vue3组件，可直接复制到您的项目中，无需额外依赖。——Wrjnb
-              UI
-            </p>
+            <p>提供高质量的Vue3组件，可直接复制到您的项目中，无需额外依赖。——Wrjnb UI</p>
           </div>
 
           <div class="footer-col">
@@ -72,11 +54,7 @@
             <h3>社区</h3>
             <ul class="footer-links">
               <li>
-                <a
-                  href="https://github.com/wangrunjie1/wrjnb-ui"
-                  target="_blank"
-                  >GitHub</a
-                >
+                <a href="https://github.com/wangrunjie1/wrjnb-ui" target="_blank">GitHub</a>
               </li>
               <li><a href="#" target="_blank">问题反馈</a></li>
               <li><a href="#" target="_blank">贡献指南</a></li>
@@ -109,11 +87,10 @@ useHead({
   meta: [
     {
       name: "description",
-      content:
-        "Wrjnb UI 提供高质量的 Vue3 组件，可直接复制到您的项目中，无需额外依赖或复杂配置。",
+      content: "Wrjnb UI 提供高质量的 Vue3 组件，可直接复制到您的项目中，无需额外依赖或复杂配置。",
     },
   ],
-});
+})
 </script>
 
 <style>
@@ -180,8 +157,8 @@ header {
 }
 
 .logo-icon {
-  color: var(--primary);
-  font-size: 28px;
+  width: 28px;
+  height: 28px;
 }
 
 .nav-links {

@@ -5,31 +5,18 @@
       <div class="hero-bg"></div>
       <div class="container hero-content">
         <div class="hero-left">
+          <img src="/public/logo.png" class="logo-img" alt="wrjnb ui" />
           <h1 class="hero-title">Wrjnb UI</h1>
-          <p class="hero-subtitle">
-            高颜值 · 极致轻量 · 复制即用的 Vue3 组件库
-          </p>
+          <p class="hero-subtitle">高颜值 · 极致轻量 · 复制即用的 Vue3 组件库</p>
           <div class="hero-actions">
-            <NuxtLink to="/component" class="btn btn-primary btn-lg">
-              <i class="fas fa-rocket"></i> 立即体验
-            </NuxtLink>
-            <a
-              href="https://github.com/wangrunjie1/wrjnb-ui"
-              target="_blank"
-              class="btn btn-outline btn-lg"
-            >
+            <NuxtLink to="/component" class="btn btn-primary btn-lg"> <i class="fas fa-rocket"></i> 立即体验 </NuxtLink>
+            <a href="https://github.com/wangrunjie1/wrjnb-ui" target="_blank" class="btn btn-outline btn-lg">
               <i class="fab fa-github"></i> GitHub
             </a>
           </div>
           <div class="hero-badges">
-            <img
-              src="https://img.shields.io/github/stars/wangrunjie1/wrjnb-ui?style=social"
-              alt="GitHub stars"
-            />
-            <img
-              src="https://img.shields.io/npm/dm/wrjnb-ui"
-              alt="NPM downloads"
-            />
+            <img src="https://img.shields.io/github/stars/wangrunjie1/wrjnb-ui?style=social" alt="GitHub stars" />
+            <img src="https://img.shields.io/npm/dm/wrjnb-ui" alt="NPM downloads" />
             <span class="badge-mit">MIT License</span>
           </div>
         </div>
@@ -80,9 +67,7 @@
             <i class="fas fa-copy"></i>
           </div>
           <div class="feature-title">复制即用</div>
-          <div class="feature-desc">
-            所有组件可直接复制到你的项目，无需配置。
-          </div>
+          <div class="feature-desc">所有组件可直接复制到你的项目，无需配置。</div>
         </div>
         <div class="feature">
           <div class="feature-icon feature-bg4">
@@ -98,33 +83,30 @@
     <section class="cta-section">
       <div class="container cta-content">
         <h2>立即体验 Wrjnb UI，让开发更高效！</h2>
-        <NuxtLink to="/component" class="btn btn-primary btn-xl">
-          <i class="fas fa-magic"></i> 开始使用
-        </NuxtLink>
+        <NuxtLink to="/component" class="btn btn-primary btn-xl"> <i class="fas fa-magic"></i> 开始使用 </NuxtLink>
       </div>
     </section>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
-import WrjnbButton from "~/components/Wrjnb/Button/index.vue";
-import WrjnbInput from "~/components/Wrjnb/Input/index.vue";
-import WrjnbTag from "~/components/Wrjnb/Tag/index.vue";
-import WrjnbSwitch from "~/components/Wrjnb/Switch/index.vue";
+import { ref } from "vue"
+import WrjnbButton from "~/components/Wrjnb/Button/index.vue"
+import WrjnbInput from "~/components/Wrjnb/Input/index.vue"
+import WrjnbTag from "~/components/Wrjnb/Tag/index.vue"
+import WrjnbSwitch from "~/components/Wrjnb/Switch/index.vue"
 
-const switchVal = ref(true);
+const switchVal = ref(true)
 
 useHead({
   title: "Wrjnb UI - 高颜值 Vue3 组件库",
   meta: [
     {
       name: "description",
-      content:
-        "Wrjnb UI 提供高质量的 Vue3 组件，极致轻量、现代美观、复制即用。",
+      content: "Wrjnb UI 提供高质量的 Vue3 组件，极致轻量、现代美观、复制即用。",
     },
   ],
-});
+})
 </script>
 
 <style scoped>
