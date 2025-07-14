@@ -19,8 +19,7 @@ export default defineNuxtConfig({
         { "http-equiv": "X-UA-Compatible", content: "IE=edge,chrome=1" },
         {
           name: "viewport",
-          content:
-            "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover",
+          content: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover",
         },
         // SEO
         { name: "author", content: "wrjnb" },
@@ -44,14 +43,7 @@ export default defineNuxtConfig({
           href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css",
         },
       ],
-      script: [
-        {
-          src:
-            process.env.NODE_ENV === "production"
-              ? "https://hm.baidu.com/hm.js?f4e09a1bc7ff3921b0ef21ee00d12f91"
-              : "",
-        },
-      ],
+      script: [],
     },
   },
 
@@ -61,4 +53,4 @@ export default defineNuxtConfig({
 
   modules: ["@nuxtjs/sitemap", "@nuxtjs/robots"],
   site: { url: "https://ui.wrjnb.top", name: "wrjnb UI" },
-});
+})
