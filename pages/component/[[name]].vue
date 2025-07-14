@@ -12,15 +12,15 @@
                 <div class="category-title">{{ category }}</div>
                 <ul class="component-list">
                   <li v-for="component in groupedComponents[category]" :key="component.name">
-                    <NuxtLink
-                      :to="`/component/${component.name.toLowerCase()}`"
+                    <div
                       class="component-link"
                       :class="{
                         active: ($route.params.name || 'alert') === component.name.toLowerCase(),
                       }"
+                      @click="selectComponent(component)"
                     >
                       {{ component.title }}
-                    </NuxtLink>
+                    </div>
                   </li>
                 </ul>
               </div>
@@ -233,6 +233,13 @@ const copyComponentCode = () => {
     })
   }
 }
+
+async function selectComponent(component) {
+  const name = component.name.toLowerCase()
+  currentComponent.value = await getComponentByName(name)
+  route.params.name = name
+  replaceStateUrl(`/component/${name}`)
+}
 </script>
 
 <style scoped>
@@ -434,6 +441,7 @@ code {
   position: relative;
   width: 100%;
   padding-left: 10px;
+  cursor: pointer;
 }
 
 .component-link:hover {
