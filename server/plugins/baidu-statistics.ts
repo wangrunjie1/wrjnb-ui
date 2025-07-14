@@ -6,6 +6,7 @@ var _hmt = _hmt || []
 _hmt.push(['_requirePlugin', 'UrlChangeTracker', {
   shouldTrackUrlChange: function (newPath, oldPath) {
     console.log('UrlChangeTracker')
+    console.log(newPath,oldPath)
     return newPath && oldPath;
   }}
 ]);
