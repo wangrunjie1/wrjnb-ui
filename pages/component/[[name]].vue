@@ -26,7 +26,7 @@
               </div>
             </div>
 
-            <div class="sidebar-card">
+            <!-- <div class="sidebar-card">
               <h3 class="sidebar-title">设计资源</h3>
               <ul class="component-list">
                 <li>
@@ -42,10 +42,9 @@
                   <NuxtLink to="/design/icons" class="component-link">图标库</NuxtLink>
                 </li>
               </ul>
-            </div>
+            </div> -->
           </div>
 
-          <!-- Component Detail -->
           <div v-if="currentComponent" class="component-detail">
             <div class="detail-header">
               <h1>{{ currentComponent.title }}</h1>
