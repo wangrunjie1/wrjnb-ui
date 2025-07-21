@@ -91,6 +91,13 @@ useHead({
     },
   ],
 })
+
+const route = useRoute()
+watch(route, () => {
+  if (window._hmt) {
+    window._hmt.push(["_trackPageview", route.path])
+  }
+})
 </script>
 
 <style>
