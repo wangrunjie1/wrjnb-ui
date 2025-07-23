@@ -5,7 +5,7 @@
       <div class="container">
         <nav class="navbar">
           <NuxtLink to="/" class="logo">
-            <img src="/public/logo.png" class="logo-icon" alt="wrjnb ui" />
+            <img src="~assets/images/logo.png" class="logo-icon" alt="wrjnb ui" />
             Wrjnb UI
           </NuxtLink>
           <div class="nav-links">

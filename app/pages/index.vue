@@ -5,7 +5,7 @@
       <div class="hero-bg"></div>
       <div class="container hero-content">
         <div class="hero-left">
-          <img src="/public/logo.png" class="logo-img" alt="wrjnb ui" />
+          <img src="~assets/images/logo.png" class="logo-img" alt="wrjnb ui" />
           <h1 class="hero-title">Wrjnb UI</h1>
           <p class="hero-subtitle">高颜值 · 极致轻量 · 复制即用的 Vue3 组件库</p>
           <div class="hero-actions">
