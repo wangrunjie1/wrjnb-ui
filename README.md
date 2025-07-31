@@ -34,7 +34,7 @@ Wrjnb UI 已实现以下主流组件，持续扩充中：
 
 ## 技术栈
 
-- **框架**：Nuxt 3
+- **框架**：Nuxt 4
 - **前端**：Vue 3 + Composition API + TypeScript
 - **样式**：SCSS + CSS Variables
 - **图标**：Font Awesome 5
