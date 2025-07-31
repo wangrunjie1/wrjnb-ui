@@ -12,6 +12,7 @@
             <NuxtLink to="/" class="nav-link" :class="{ active: $route.path === '/' }">首页</NuxtLink>
             <NuxtLink to="/component" class="nav-link" :class="{ active: $route.path === '/component' }">组件</NuxtLink>
             <NuxtLink to="/about" class="nav-link" :class="{ active: $route.path === '/about' }">关于</NuxtLink>
+            <a href="https://www.wrjnb.top" class="nav-link" target="_blank" rel="noopener">wrjnb</a>
             <a
               href="https://github.com/wangrunjie1/wrjnb-ui"
               class="nav-link github-link"
